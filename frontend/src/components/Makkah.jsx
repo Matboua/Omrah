@@ -4,7 +4,7 @@ import animationData from "../assets/animation/makkah.json"; // adjust the path 
 
 const MyLottieAnimation = () => {
 	return (
-		<div className="w-full min-[500px]:w-1/2 lg:w-5/12">
+		<div className="w-full min-[500px]:w-1/2 lg:w-5/12 -mt-10">
 			<Lottie animationData={animationData} loop={true} autoplay={true} />
 		</div>
 	);
