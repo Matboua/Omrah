@@ -1,11 +1,21 @@
-import Guest from "./pages/guest/Guest";
+// src/router/index.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/guest/Home";
+import Login from "./pages/guest/Login";
+import Register from "./pages/guest/Register";
+// import other roles and components...
 
-function App() {
+export default function AppRoutes() {
 	return (
-		<>
-			<Guest />
-		</>
+		<BrowserRouter>
+			<Routes>
+				{/* Guest Routes */}
+				<Route path="/" element={<Home />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				{/* Client Routes */}
+				{/* Admin Routes */}
+			</Routes>
+		</BrowserRouter>
 	);
 }
-
-export default App;
