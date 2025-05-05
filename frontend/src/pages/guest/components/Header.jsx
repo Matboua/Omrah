@@ -1,5 +1,6 @@
 import { AlignJustify } from "lucide-react";
 import { useState } from "react";
+import logo from "../../../assets/images/letter-o.png";
 // import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -8,11 +9,7 @@ export default function Header() {
 		<header className="sticky col-span-10 col-start-2 h-16 flex justify-between items-center">
 			{/* Logo */}
 			<div className="flex items-center">
-				<img
-					src="/src/assets/images/letter-o.png"
-					alt="Omrah Logo"
-					className="w-10"
-				/>
+				<img src={logo} alt="Omrah Logo" className="w-10" />
 				<p className="font-bold text-4xl text-orange-600">mrah</p>
 			</div>
 			{/* Links */}
