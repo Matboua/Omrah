@@ -1,6 +1,6 @@
 import { AlignJustify } from "lucide-react";
 import { useState } from "react";
-import logo from "../../../assets/images/letter-o.png";
+import logo from "../../../assets/images/letter-o.webp";
 // import { Link } from "react-router-dom";
 
 export default function Header() {

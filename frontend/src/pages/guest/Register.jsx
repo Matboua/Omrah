@@ -1,6 +1,6 @@
-import makkah from "../../assets/images/makkah.jpg";
-import makkahh from "../../assets/images/makkah-2.jpg";
-import logo from "../../assets/images/letter-o.png";
+import makkah from "../../assets/images/makkah.webp";
+import makkahh from "../../assets/images/makkah-2.webp";
+import logo from "../../assets/images/letter-o.webp";
 export default function Register() {
 	return (
 		<section className="grid grid-cols-12 min-h-screen">
