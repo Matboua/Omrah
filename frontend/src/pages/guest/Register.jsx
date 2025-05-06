@@ -35,7 +35,7 @@ export default function Register() {
 						<p className="text-neutral-600">Please enter your informations!</p>
 					</div>
 					{/* Check + Fields */}
-					<form className="grid grid-cols-1 gap-4 text-neutral-600">
+					<form className="grid grid-cols-1 md:grid-cols-2 gap-4 text-neutral-600">
 						{/* First Name */}
 						<div className="flex flex-col gap-1">
 							<label className="px-5">First Name</label>
