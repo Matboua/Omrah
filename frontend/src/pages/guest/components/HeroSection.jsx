@@ -1,7 +1,7 @@
 import Makkah from "../../../components/Makkah";
 export default function HeroSection() {
 	return (
-		<section className="relative col-span-10 col-start-2 flex flex-col-reverse gap-30 md:gap-0 md:flex-row justify-center md:justify-between items-center min-h-[calc(100dvh-64px)] py-5">
+		<section className="relative flex flex-col-reverse gap-30 md:gap-0 md:flex-row justify-center md:justify-between items-center h-[calc(100dvh-64px)]">
 			{/* Left */}
 			<div className="flex flex-col justify-center rounded-sm -mt-20">
 				<h1 className="flex flex-col gap-5 font-bold leading-none text-2xl xl:text-5xl">
