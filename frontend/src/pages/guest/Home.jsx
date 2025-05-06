@@ -3,7 +3,7 @@ import HeroSection from "./components/HeroSection";
 import HowItWorks from "./components/Howitworks";
 export default function Home() {
 	return (
-		<section className="grid grid-cols-12 bg-white">
+		<section className="grid grid-cols-12 bg-white w-screen overflow-x-hidden">
 			<div className="col-span-10 col-start-2">
 				<Header />
 			</div>
