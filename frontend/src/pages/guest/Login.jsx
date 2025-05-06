@@ -5,10 +5,18 @@ import {
 	faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
 
-import makkah from "../../assets/images/makkah.jpg";
-import makkahh from "../../assets/images/makkah-2.jpg";
-import logo from "../../assets/images/letter-o.png";
+import makkah from "../../assets/images/makkah.webp";
+import makkahh from "../../assets/images/makkah-2.webp";
+import logo from "../../assets/images/letter-o.webp";
+import { useState } from "react";
 export default function Login() {
+	// Stock Data
+	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
+	// Send Data
+	const handleLogin = (e) => {
+		e.preventDefault();
+	};
 	return (
 		<section className="grid grid-cols-12 min-h-screen">
 			{/* Left Section */}
@@ -42,13 +50,22 @@ export default function Login() {
 						<p className="text-neutral-600">Please enter your credentials!</p>
 					</div>
 					{/* Check + Fields */}
-					<form className="flex flex-col gap-4 text-neutral-600">
+					<form
+						className="flex flex-col gap-4 text-neutral-600"
+						onSubmit={(e) => {
+							handleLogin(e);
+						}}
+					>
 						<div className="flex flex-col gap-1">
 							<label className="px-5">Email</label>
 							<input
 								type="text"
 								className="border border-neutral-400 outline-0 py-2.5 pl-5"
 								placeholder="Write Your Email..."
+								value={email}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
 							/>
 						</div>
 						<div className="flex flex-col gap-1">
@@ -57,6 +74,10 @@ export default function Login() {
 								type="password"
 								className="border border-neutral-400 outline-0 py-2.5 pl-5"
 								placeholder="*************"
+								value={password}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
 							/>
 						</div>
 						<input
