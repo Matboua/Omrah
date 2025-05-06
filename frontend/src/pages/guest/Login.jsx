@@ -28,22 +28,21 @@ export default function Login() {
 				</div>
 			</div>
 			{/* Right Section */}
-			<div className="relative col-span-12 md:col-span-7 flex flex-col justify-center gap-8 px-5 py-10  sm:px-10 lg:px-25 xl:px-40">
+			<div className="relative col-span-12 md:col-span-7 flex flex-col justify-center gap-8 px-5 py-10  sm:px-10 lg:px-25 xl:px-40 overflow-hidden h-dvh">
 				{/* bg */}
 				<img
 					src={makkahh}
-					className="absolute top-0 right-0 w-4/12"
+					className="absolute top-1/4 right-0 w-full opacity-20"
 					alt="makkah image"
 				></img>
-				{/* Title */}
-				<div>
-					<h1 className="text-5xl font-semibold mb-2">Log In</h1>
-					<p className="text-neutral-600">Please enter your credentials!</p>
-				</div>
-				{/* Check + Fields */}
-				<form className="flex flex-col gap-4 text-neutral-600 overflow-hidden">
-					{/* First Fields */}
-					<div className="flex flex-col gap-4">
+				<div className="z-10 flex flex-col justify-center gap-8">
+					{/* Title */}
+					<div>
+						<h1 className="text-5xl font-semibold mb-2">Log In</h1>
+						<p className="text-neutral-600">Please enter your credentials!</p>
+					</div>
+					{/* Check + Fields */}
+					<form className="flex flex-col gap-4 text-neutral-600">
 						<div className="flex flex-col gap-1">
 							<label className="px-5">Email</label>
 							<input
@@ -60,45 +59,49 @@ export default function Login() {
 								placeholder="*************"
 							/>
 						</div>
-					</div>
-				</form>
-				{/* Under The Form */}
-				<div className="flex flex-col gap-8">
-					{/* Ou */}
-					<div className="relative flex ">
-						<div className="absolute left-0 top-1/2 w-5/12 h-[1px] bg-neutral-400"></div>
-						<p className="text-skblack/60 text-center w-full">Ou</p>
-						<div className="absolute right-0 top-1/2 w-5/12 h-[1px] bg-neutral-400"></div>
-					</div>
-					{/* Brand Icons */}
-					<div className="flex justify-center gap-3 md:gap-10">
-						<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
-							<FontAwesomeIcon
-								icon={faGoogle}
-								className=" w-5 text-neutral-600 group-hover:text-red-600"
-							/>
+						<input
+							type="submit"
+							value="Login"
+							className="bg-orange-600 py-3 font-semibold text-white my-5 cursor-pointer rounded-sm"
+						/>
+					</form>
+					{/* Under The Form */}
+					<div className="flex flex-col gap-8">
+						{/* Ou */}
+						<div className="relative flex ">
+							<div className="absolute left-0 top-1/2 w-5/12 h-[1px] bg-neutral-400"></div>
+							<p className="text-skblack/60 text-center w-full">Ou</p>
+							<div className="absolute right-0 top-1/2 w-5/12 h-[1px] bg-neutral-400"></div>
 						</div>
-						<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
-							<FontAwesomeIcon
-								icon={faFacebook}
-								className=" w-5.5 text-neutral-600 group-hover:text-blue-700"
-							/>
+						{/* Brand Icons */}
+						<div className="flex justify-center gap-3 md:gap-10">
+							<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
+								<FontAwesomeIcon
+									icon={faGoogle}
+									className=" w-5 text-neutral-600 group-hover:text-red-600"
+								/>
+							</div>
+							<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
+								<FontAwesomeIcon
+									icon={faFacebook}
+									className=" w-5.5 text-neutral-600 group-hover:text-blue-700"
+								/>
+							</div>
+							<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
+								<FontAwesomeIcon
+									icon={faTiktok}
+									className=" w-5 text-neutral-600 group-hover:text-black"
+								/>
+							</div>
 						</div>
-						<div className="border border-neutral-400 py-3 px-10 w-fit cursor-pointer rounded-md group">
-							<FontAwesomeIcon
-								icon={faTiktok}
-								className=" w-5 text-neutral-600 group-hover:text-black"
-							/>
-						</div>
+						<p className="text-center text-sm text-neutral-600">
+							Don't have an account?{" "}
+							<a href="/register" className="text-orange-600">
+								Register now
+							</a>
+						</p>
 					</div>
-					<p className="text-center text-sm text-neutral-600">
-						Don't have an account?{" "}
-						<a href="/login" className="text-orange-600">
-							Register now
-						</a>
-					</p>
 				</div>
-				{/* Login */}
 			</div>
 		</section>
 	);
