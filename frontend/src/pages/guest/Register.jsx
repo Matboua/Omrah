@@ -13,7 +13,7 @@ export default function Register() {
 				<div className="w-fit flex flex-col gap-5 z-10">
 					<p>Welcome to</p>
 					{/* Logo */}
-					<a href="#" className="flex items-center gap-1 w-fit">
+					<a href="/" className="flex items-center gap-1 w-fit">
 						<img src={logo} alt="Omrah Logo" className="w-10" />
 						<p className="font-bold text-4xl text-orange-600">mrah</p>
 					</a>

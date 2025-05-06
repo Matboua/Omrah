@@ -8,10 +8,10 @@ export default function Header() {
 	return (
 		<header className="sticky col-span-10 col-start-2 h-16 flex justify-between items-center z-50">
 			{/* Logo */}
-			<div className="flex items-center">
+			<a href="/" className="flex items-center">
 				<img src={logo} alt="Omrah Logo" className="w-10" />
 				<p className="font-bold text-4xl text-orange-600">mrah</p>
-			</div>
+			</a>
 			{/* Links */}
 			<div className="hidden md:flex gap-15 font-semibold">
 				<a href="/home">Home</a>
@@ -22,13 +22,13 @@ export default function Header() {
 			{/* Login + Register */}
 			<div className="hidden lg:flex gap-3">
 				<a
-					href="login"
+					href="/register"
 					className="px-6 py-2 text-base font-semibold border rounded bg-white text-orange-600"
 				>
 					Register
 				</a>
 				<a
-					href="login"
+					href="/login"
 					className="px-6 py-2 text-base font-semibold border rounded bg-orange-600 text-white"
 				>
 					Login
@@ -61,13 +61,13 @@ export default function Header() {
 					{/* Login + Register */}
 					<div className="flex gap-3">
 						<a
-							href="login"
+							href="/register"
 							className="px-6 py-2 text-base font-semibold border rounded bg-white text-orange-600 h-fit"
 						>
 							Register
 						</a>
 						<a
-							href="login"
+							href="/login"
 							className="px-6 py-2 text-base font-semibold border rounded bg-orange-600 text-white h-fit"
 						>
 							Login
