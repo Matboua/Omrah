@@ -9,13 +9,24 @@ import makkah from "../../assets/images/makkah.webp";
 import makkahh from "../../assets/images/makkah-2.webp";
 import logo from "../../assets/images/letter-o.webp";
 import { useState } from "react";
+import axios from "../../config/axios";
 export default function Login() {
 	// Stock Data
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	// Send Data
-	const handleLogin = (e) => {
+	const handleLogin = async (e) => {
 		e.preventDefault();
+		try {
+			await axios.get("/sanctum/csrf-cookie");
+			const response = await axios.post("/api/login", {
+				email,
+				password,
+			});
+			console.log(response.data.message);
+		} catch (error) {
+			console.error(error.response?.data?.message || "Login failed");
+		}
 	};
 	return (
 		<section className="grid grid-cols-12 min-h-screen">
