@@ -8,7 +8,7 @@ export default function Header() {
 	const [openMenu, setOpenMenu] = useState(false);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	return (
-		<header className="sticky col-span-10 col-start-2 h-16 flex justify-between items-center z-50">
+		<header className="sticky h-16 flex justify-between items-center z-50 bg-white">
 			{/* Logo */}
 			<a href="/" className="flex items-center">
 				<img src={logo} alt="Omrah Logo" className="w-10" />
@@ -16,7 +16,9 @@ export default function Header() {
 			</a>
 			{/* Links */}
 			<div className="hidden md:flex gap-15 font-semibold">
-				<a href="/home">Home</a>
+				<a href="/home" className="text-orange-600">
+					Home
+				</a>
 				<a href="/services">Services</a>
 				<a href="/about">About</a>
 				<a href="/contact">Contact</a>
@@ -61,11 +63,12 @@ export default function Header() {
 					}`}
 				>
 					{/* Links */}
-					<div className="flex flex-col gap-10">
+					<div className="flex flex-col items-center gap-10">
 						<a href="#" className="text-orange-600">
 							Home
 						</a>
-						<a href="#">Services</a>
+						<a href="/services">Services & Offers</a>
+						<a href="/articles">Articles</a>
 						<a href="#">About</a>
 						<a href="#">Contact</a>
 					</div>

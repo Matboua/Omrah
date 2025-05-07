@@ -7,6 +7,8 @@ import Register from "./pages/guest/Register";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./store/slices/authSlice";
+import PrivacyPolicy from "./pages/guest/PrivacyPolicy";
+import TermsAndConditions from "./pages/guest/TermsAndConditions";
 // import other roles and components...
 
 export default function AppRoutes() {
@@ -21,6 +23,8 @@ export default function AppRoutes() {
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
+				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}
 				{/* Admin Routes */}
 			</Routes>

@@ -8,7 +8,7 @@ export default function Faqs() {
 				title="Frequently Asked Faqs"
 				description="Explore common Faqs and essential details about renting with Carvoy"
 			/>
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+			<div className="flex flex-col gap-5">
 				<Faq
 					title="What services are included in your rates?"
 					description="At Carvoy, our rates include: vehicle rental, vehicle maintenance and lubricants, unlimited mileage for rentals of 3 days or more, civil liability coverage, collision protection with a deductible, theft protection with a deductible, local taxes, 24/7 breakdown assistance, pick-up and drop-off services, and a 20% VAT airport fee."

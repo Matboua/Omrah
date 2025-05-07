@@ -1,4 +1,5 @@
 import Faqs from "./components/faqs/Faqs";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import HowItWorks from "./components/Howitworks";
@@ -13,17 +14,20 @@ export default function Home() {
 			<div className="col-span-10 col-start-2">
 				<HeroSection />
 			</div>
-			<div className="col-span-12 col-start-1 flex justify-center bg-orange-50">
+			<div className="col-span-12 col-start-1 flex justify-center bg-gray-50">
 				<WhyChooseUs />
 			</div>
 			<div className="col-span-10 col-start-2">
 				<HowItWorks />
 			</div>
-			<div className="col-span-12 col-start-1 flex justify-center bg-orange-50">
+			<div className="col-span-12 col-start-1 flex justify-center bg-gray-50">
 				<Swiper />
 			</div>
 			<div className="col-span-10 col-start-2">
 				<Faqs />
+			</div>
+			<div className="col-span-12 col-start-1 flex justify-center bg-gray-50">
+				<Footer />
 			</div>
 		</section>
 	);
