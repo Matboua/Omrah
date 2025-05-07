@@ -12,7 +12,7 @@ export default function HowItWorks() {
 			{/* Title */}
 			<Titles
 				title="How It Works"
-				description="Experience hassle-free car rentals with CarVoy, making travel across Morocco easy and convenient"
+				description="Experience a smooth and spiritually enriching journey with Omrah Agency, making your pilgrimage easy and stress-free."
 			/>
 			{/* Cards */}
 			<div className="grid gap-8 grid-cols-1 lg:grid-cols-3">
@@ -25,11 +25,11 @@ export default function HowItWorks() {
 							className="text-white p-5 bg-blue-600 rounded-full"
 						/>
 					</div>
-					<h3 className="font-medium text-xl">1. Select Departure City</h3>
+					<h3 className="font-medium text-xl">1. Choose Your Package</h3>
 					<p className="text-center px-5">
-						Select your preferred departure city from across Morocco. With our
-						Umrah services, begin your spiritual journey from the location most
-						convenient for you.
+						Select from a range of carefully curated Omrah packages tailored to
+						your budget and preferences. Whether you seek economy or premium
+						services, we’ve got you covered.
 					</p>
 				</div>
 				{/* Card Two */}
@@ -41,11 +41,11 @@ export default function HowItWorks() {
 							className="text-white p-5 bg-orange-400 rounded-full"
 						/>
 					</div>
-					<h3 className="font-medium text-xl">2. We Handle Everything</h3>
+					<h3 className="font-medium text-xl">2. Prepare for Departure</h3>
 					<p className="text-center px-5">
-						Our team ensures your visa, flights, and accommodation are arranged
-						with care. Start your pilgrimage journey with peace of mind and no
-						stress.
+						Once booked, we guide you through the entire preparation process —
+						from visa assistance to travel documents and pre-departure tips —
+						ensuring everything is in place for your sacred journey.
 					</p>
 				</div>
 				{/* Card Three */}
@@ -57,11 +57,11 @@ export default function HowItWorks() {
 							className="text-white p-5 bg-gray-900 rounded-full"
 						/>
 					</div>
-					<h3 className="font-medium text-xl">3. Choose a Package</h3>
+					<h3 className="font-medium text-xl">3. Begin Your Pilgrimage</h3>
 					<p className="text-center px-5">
-						Browse our range of carefully curated Umrah packages — from economy
-						to premium — designed to meet every budget and preference. Book your
-						ideal package.
+						Travel with peace of mind. Our team is with you every step of the
+						way, providing support from departure to your return, so you can
+						focus fully on your spiritual experience.
 					</p>
 				</div>
 			</div>
