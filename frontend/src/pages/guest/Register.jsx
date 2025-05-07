@@ -19,7 +19,6 @@ export default function Register() {
 	const handleRegister = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.get("/sanctum/csrf-cookie");
 			const response = await axios.post("/api/register", {
 				first_name: first_name,
 				last_name: last_name,

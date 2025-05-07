@@ -11,20 +11,23 @@ import logo from "../../assets/images/letter-o.webp";
 import { useState } from "react";
 import axios from "../../config/axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../../store/slices/authSlice";
 export default function Login() {
 	// Stock Data
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	// Send Data
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.get("/sanctum/csrf-cookie");
 			const response = await axios.post("/api/login", {
 				email,
 				password,
 			});
+			await dispatch(fetchUser()).unwrap();
 			console.log(response.data.message);
 			navigate("/");
 		} catch (error) {

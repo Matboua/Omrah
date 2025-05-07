@@ -7,12 +7,16 @@ import Register from "./pages/guest/Register";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./store/slices/authSlice";
+import Cookies from 'js-cookie';
 // import other roles and components...
 
 export default function AppRoutes() {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(fetchUser());
+		const xsrfToken = Cookies.get('XSRF-TOKEN');
+		if (xsrfToken) {
+			dispatch(fetchUser());
+		}
 	}, [dispatch]);
 	return (
 		<BrowserRouter>
