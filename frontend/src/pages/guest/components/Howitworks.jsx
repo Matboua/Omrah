@@ -8,7 +8,7 @@ import {
 
 export default function HowItWorks() {
 	return (
-		<section className="py-20 relative flex flex-col justify-center items-center gap-10 md:gap-20 w-10/12">
+		<section className="py-20 w-full flex flex-col items-center gap-10 md:gap-15">
 			{/* Title */}
 			<Titles
 				title="How It Works"
