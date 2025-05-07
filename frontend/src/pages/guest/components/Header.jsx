@@ -3,10 +3,26 @@ import { useState } from "react";
 import logo from "../../../assets/images/letter-o.webp";
 // import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../../../store/slices/authSlice";
 
 export default function Header() {
 	const [openMenu, setOpenMenu] = useState(false);
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+	const dispatch = useDispatch();
+  	const navigate = useNavigate();
+
+	  
+		const handleLogout = async () => {
+		  try {
+			await dispatch(logoutUser()).unwrap();
+			navigate('/login'); // or wherever you want to send the user after logout
+		  } catch (error) {
+			console.error(error);
+		  }
+		};
+
 	return (
 		<header className="sticky h-16 flex justify-between items-center z-50 bg-white">
 			{/* Logo */}
@@ -25,12 +41,12 @@ export default function Header() {
 			</div>
 			{/* Login + Register */}
 			{isAuthenticated ? (
-				<a
-					href="/"
+				<button
 					className="px-6 py-2 text-base font-semibold border rounded bg-white text-orange-600 h-fit"
+					onClick={handleLogout}
 				>
 					Logout
-				</a>
+				</button>
 			) : (
 				<div className="hidden lg:flex gap-3">
 					<a
@@ -74,12 +90,12 @@ export default function Header() {
 					</div>
 					{/* Login + Register */}
 					{isAuthenticated ? (
-						<a
-							href="/"
+						<button
 							className="px-6 py-2 text-base font-semibold border rounded bg-white text-orange-600 h-fit"
+							onClick={handleLogout}
 						>
 							Logout
-						</a>
+						</button>
 					) : (
 						<div className="flex gap-3">
 							<a
