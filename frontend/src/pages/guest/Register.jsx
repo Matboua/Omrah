@@ -3,6 +3,7 @@ import makkahh from "../../assets/images/makkah-2.webp";
 import logo from "../../assets/images/letter-o.webp";
 import { useState } from "react";
 import axios from "../../config/axios";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
 	// Stock Data
 	const [first_name, setFirst_name] = useState();
@@ -13,6 +14,7 @@ export default function Register() {
 	const [phone, setPhone] = useState();
 	const [password, setPassword] = useState();
 	const [password_confirmation, setPassword_confirmation] = useState();
+	const navigate = useNavigate();
 	// Send Data
 	const handleRegister = async (e) => {
 		e.preventDefault();
@@ -29,6 +31,7 @@ export default function Register() {
 				password_confirmation: password_confirmation,
 			});
 			console.log(response.data.message);
+			navigate("/");
 		} catch (error) {
 			console.error(error.response?.data?.message || "Registration failed");
 		}

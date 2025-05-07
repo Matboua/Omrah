@@ -10,10 +10,12 @@ import makkahh from "../../assets/images/makkah-2.webp";
 import logo from "../../assets/images/letter-o.webp";
 import { useState } from "react";
 import axios from "../../config/axios";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
 	// Stock Data
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+	const navigate = useNavigate();
 	// Send Data
 	const handleLogin = async (e) => {
 		e.preventDefault();
@@ -24,6 +26,7 @@ export default function Login() {
 				password,
 			});
 			console.log(response.data.message);
+			navigate("/");
 		} catch (error) {
 			console.error(error.response?.data?.message || "Login failed");
 		}

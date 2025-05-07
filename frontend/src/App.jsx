@@ -3,9 +3,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/guest/Home";
 import Login from "./pages/guest/Login";
 import Register from "./pages/guest/Register";
+
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "./store/slices/authSlice";
 // import other roles and components...
 
 export default function AppRoutes() {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(fetchUser());
+	}, [dispatch]);
 	return (
 		<BrowserRouter>
 			<Routes>
