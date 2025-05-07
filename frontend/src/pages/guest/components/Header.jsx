@@ -16,7 +16,7 @@ export default function Header() {
 			</a>
 			{/* Links */}
 			<div className="hidden md:flex gap-15 font-semibold">
-				<a href="/home" className="text-orange-600">
+				<a href="/" className="text-orange-600">
 					Home
 				</a>
 				<a href="/services">Services</a>
@@ -64,13 +64,13 @@ export default function Header() {
 				>
 					{/* Links */}
 					<div className="flex flex-col items-center gap-10">
-						<a href="#" className="text-orange-600">
+						<a href="/" className="text-orange-600">
 							Home
 						</a>
 						<a href="/services">Services & Offers</a>
 						<a href="/articles">Articles</a>
-						<a href="#">About</a>
-						<a href="#">Contact</a>
+						<a href="/about">About</a>
+						<a href="/contact">Contact</a>
 					</div>
 					{/* Login + Register */}
 					{isAuthenticated ? (
