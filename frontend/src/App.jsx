@@ -7,12 +7,9 @@ import Register from "./pages/guest/Register";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "./store/slices/authSlice";
-<<<<<<< HEAD
 import Cookies from 'js-cookie';
-=======
 import PrivacyPolicy from "./pages/guest/PrivacyPolicy";
 import TermsAndConditions from "./pages/guest/TermsAndConditions";
->>>>>>> 50700e4b739bd4868b8beeacea8cb25ed25f94c4
 // import other roles and components...
 
 export default function AppRoutes() {
