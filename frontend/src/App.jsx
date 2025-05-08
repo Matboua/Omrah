@@ -12,6 +12,8 @@ import PrivacyPolicy from "./pages/guest/PrivacyPolicy";
 import TermsAndConditions from "./pages/guest/TermsAndConditions";
 import Contact from "./pages/guest/Contact";
 import About from "./pages/guest/About";
+import Services from "./pages/guest/Services";
+import Dashboard from "./pages/admin/Dashboard";
 // import other roles and components...
 
 export default function AppRoutes() {
@@ -33,10 +35,12 @@ export default function AppRoutes() {
 				<Route path="/" element={<Home />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/services" element={<Services />} />
 				<Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
 				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}
 				{/* Admin Routes */}
+				<Route path="/dashboard" element={<Dashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);
