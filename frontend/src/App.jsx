@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import PrivacyPolicy from "./pages/guest/PrivacyPolicy";
 import TermsAndConditions from "./pages/guest/TermsAndConditions";
 import Contact from "./pages/guest/Contact";
+import About from "./pages/guest/About";
 // import other roles and components...
 
 export default function AppRoutes() {
@@ -31,6 +32,7 @@ export default function AppRoutes() {
 				{/* Global */}
 				<Route path="/" element={<Home />} />
 				<Route path="/contact" element={<Contact />} />
+				<Route path="/about" element={<About />} />
 				<Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
 				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}

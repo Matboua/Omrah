@@ -32,6 +32,7 @@ export default function Login() {
 			navigate("/");
 		} catch (error) {
 			console.error(error.response?.data?.message || "Login failed");
+			console.error(error);
 		}
 	};
 	return (
