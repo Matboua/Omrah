@@ -31,7 +31,10 @@ class AuthController extends Controller
             'password'   => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+       // Auto-login the user
+        Auth::login($user);
+
+        return response()->json(['message' => 'Registered and logged in successfully', 'user' => $user], 201);
     }
 
     public function login(Request $request)
