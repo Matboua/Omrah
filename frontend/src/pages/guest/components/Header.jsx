@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../store/slices/authSlice";
 import Cookies from 'js-cookie'
+import axios from '../../../config/axios'
 
 export default function Header() {
 	const [openMenu, setOpenMenu] = useState(false);

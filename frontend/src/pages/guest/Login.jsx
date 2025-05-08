@@ -23,6 +23,9 @@ export default function Login() {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		try {
+
+			await axios.get("/sanctum/csrf-cookie");
+
 			const response = await axios.post("/api/login", {
 				email,
 				password,

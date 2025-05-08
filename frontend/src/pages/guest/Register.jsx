@@ -4,6 +4,8 @@ import logo from "../../assets/images/letter-o.webp";
 import { useState } from "react";
 import axios from "../../config/axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../../store/slices/authSlice";
 export default function Register() {
 	// Stock Data
 	const [first_name, setFirst_name] = useState();
@@ -15,10 +17,14 @@ export default function Register() {
 	const [password, setPassword] = useState();
 	const [password_confirmation, setPassword_confirmation] = useState();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	// Send Data
 	const handleRegister = async (e) => {
 		e.preventDefault();
 		try {
+
+			await axios.get("/sanctum/csrf-cookie");
+
 			const response = await axios.post("/api/register", {
 				first_name: first_name,
 				last_name: last_name,
@@ -29,6 +35,7 @@ export default function Register() {
 				password: password,
 				password_confirmation: password_confirmation,
 			});
+			await dispatch(fetchUser()).unwrap()
 			console.log(response.data.message);
 			navigate("/");
 		} catch (error) {

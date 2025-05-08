@@ -31,7 +31,10 @@ class AuthController extends Controller
             'password'   => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+       // Auto-login the user
+        Auth::login($user);
+
+        return response()->json(['message' => 'Registered and logged in successfully', 'user' => $user], 201);
     }
 
     public function login(Request $request)
@@ -51,6 +54,9 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
+
+        $request->session()->invalidate(); // 🔥 kills the current session
+        $request->session()->regenerateToken(); // 🔄 gives a new CSRF toke 
 
         return response()->json(['message' => 'Logged out successfully']);
     }
