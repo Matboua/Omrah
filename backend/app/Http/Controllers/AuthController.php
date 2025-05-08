@@ -55,6 +55,9 @@ class AuthController extends Controller
     {
         Auth::guard('web')->logout();
 
+        $request->session()->invalidate(); // 🔥 kills the current session
+        $request->session()->regenerateToken(); // 🔄 gives a new CSRF toke 
+
         return response()->json(['message' => 'Logged out successfully']);
     }
     
