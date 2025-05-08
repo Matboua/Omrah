@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../store/slices/authSlice";
+import Cookies from 'js-cookie'
 
 export default function Header() {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -17,6 +18,7 @@ export default function Header() {
 		const handleLogout = async () => {
 		  try {
 			await dispatch(logoutUser()).unwrap();
+			Cookies.remove('XSRF-TOKEN');
 			navigate('/login'); // or wherever you want to send the user after logout
 		  } catch (error) {
 			console.error(error);
