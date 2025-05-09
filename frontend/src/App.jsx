@@ -13,9 +13,9 @@ import TermsAndConditions from "./pages/guest/TermsAndConditions";
 import Contact from "./pages/guest/Contact";
 import About from "./pages/guest/About";
 import Services from "./pages/guest/Services";
-import Dashboard from "./pages/admin/Dashboard";
-import Clients from "./pages/admin/Clients";
-import Packages from "./pages/admin/Packages";
+import Dashboard from "./pages/admin/dashboard/Dashboard";
+import Clients from "./pages/admin/clients/Clients";
+import Packages from "./pages/admin/packages/Packages";
 import Settings from "./pages/admin/Settings";
 // import other roles and components...
 
