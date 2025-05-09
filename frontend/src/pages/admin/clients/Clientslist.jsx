@@ -87,19 +87,7 @@ export default function Clients() {
 
 	// Delete Client (handleDelete)
 	const handleDelete = (id) => {
-		try {
-			dispatch(deleteClientAsync(id))
-				.then(() => {
-					// Success notification could be added here
-					console.log("Client deleted successfully");
-				})
-				.catch((error) => {
-					console.error("Failed to delete client:", error);
-					// Error notification could be added here
-				});
-		} catch (error) {
-			console.error("Error in delete operation:", error);
-		}
+		dispatch(deleteClientAsync(id));
 	};
 
 	// Navigate To Client Detail

@@ -24,7 +24,7 @@ axios.interceptors.request.use(async (config) => {
 export default axios;
 
 // Base URL for the json-server API
-const API_URL = "http://localhost:8000";
+const API_URL = "https://json-server-api-q84y.onrender.com";
 
 // Generic API functions
 export const fetchData = async (endpoint) => {
