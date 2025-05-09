@@ -3,9 +3,14 @@ import { useRef, useState } from "react";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { Home, LogOut, Package, User } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
+import Cookies from 'js-cookie'
 export default function Sidebar() {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	// Close and Open The Sidebar On Focus Change
 	const [opensidebar, setOpensidebar] = useState();
 	const sidebarRef = useRef(null);
@@ -29,6 +34,17 @@ export default function Sidebar() {
 			logo: <Package size={20} />,
 		},
 	];
+
+	// function to logout
+	const handleLogout = async () => {
+			  try {
+				await dispatch(logoutUser()).unwrap();
+				Cookies.remove('XSRF-TOKEN');
+				navigate('/login'); // or wherever you want to send the user after logout
+			  } catch (error) {
+				console.error(error);
+			  }
+			};
 	return (
 		<div className="absolute md:relative z-50">
 			<aside
@@ -95,8 +111,8 @@ export default function Sidebar() {
 					</div>
 				</div>
 				{/* Logout */}
-				<Link
-					href="/login"
+				<button
+					onClick={handleLogout}
 					className={`flex ${
 						opensidebar ? "justify-start" : "justify-center"
 					} gap-3.5 hover:bg-blue-50 text-neutral-500 p-2 rounded-md w-fit md:w-full`}
@@ -105,7 +121,7 @@ export default function Sidebar() {
 					<span className={`${opensidebar ? "inline-block" : "hidden"}`}>
 						Logout
 					</span>
-				</Link>
+				</button>
 			</aside>
 		</div>
 	);

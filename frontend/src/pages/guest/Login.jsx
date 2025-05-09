@@ -31,8 +31,13 @@ export default function Login() {
 				password,
 			});
 			await dispatch(fetchUser()).unwrap();
-			console.log(response.data.message);
-			navigate("/");
+			console.log(response.data);
+			setTimeout(() => {
+                navigate(response.data.user.role === 'admin' 
+                    ? '/dashboard' 
+                    : '/'
+                );
+            }, 1500);
 		} catch (error) {
 			console.error(error.response?.data?.message || "Login failed");
 			console.error(error);

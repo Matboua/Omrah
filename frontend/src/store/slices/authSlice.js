@@ -36,18 +36,21 @@ const authSlice = createSlice({
 	initialState: {
 		user: null,
 		isAuthenticated: false,
-		loading: false,
+		role: null,
+		loading: true,
 		error: null,
 	},
 	reducers: {
 		setUser(state, action) {
 			state.user = action.payload;
 			state.isAuthenticated = true;
+			state.role = action.payload.role;
 			state.error = null;
 		},
 		clearUser(state) {
 			state.user = null;
 			state.isAuthenticated = false;
+			state.role = null;
 			state.error = null;
 		},
 	},
@@ -60,17 +63,20 @@ const authSlice = createSlice({
 			.addCase(fetchUser.fulfilled, (state, action) => {
 				state.user = action.payload;
 				state.isAuthenticated = true;
+				state.role = action.payload.role
 				state.loading = false;
 			})
 			.addCase(fetchUser.rejected, (state, action) => {
 				state.user = null;
 				state.isAuthenticated = false;
+				state.role = null;
 				state.loading = false;
 				state.error = action.payload;
 			})
 			.addCase(logoutUser.fulfilled, (state) => {
 				state.user = null;
 				state.isAuthenticated = false;
+				state.role = null
 			});
 	},
 });
