@@ -1,12 +1,14 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import SettingsCom from "./components/SettingsCom";
 
-export default function Dashboard() {
+export default function Settings() {
 	return (
 		<section className="flex h-dvh overflow-hidden">
 			<Sidebar />
 			<section className="flex flex-col w-full py-5 pr-[12px] md:pr-5 pl-[72px] md:pl-5 bg-[#fafafa]  overflow-y-scroll">
 				<Header />
+				<SettingsCom />
 			</section>
 		</section>
 	);

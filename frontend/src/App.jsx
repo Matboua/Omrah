@@ -14,6 +14,9 @@ import Contact from "./pages/guest/Contact";
 import About from "./pages/guest/About";
 import Services from "./pages/guest/Services";
 import Dashboard from "./pages/admin/Dashboard";
+import Clients from "./pages/admin/Clients";
+import Packages from "./pages/admin/Packages";
+import Settings from "./pages/admin/Settings";
 // import other roles and components...
 
 export default function AppRoutes() {
@@ -41,6 +44,9 @@ export default function AppRoutes() {
 				{/* Client Routes */}
 				{/* Admin Routes */}
 				<Route path="/dashboard" element={<Dashboard />} />
+				<Route path="/clients" element={<Clients />} />
+				<Route path="/packages" element={<Packages />} />
+				<Route path="/settings" element={<Settings />} />
 			</Routes>
 		</BrowserRouter>
 	);

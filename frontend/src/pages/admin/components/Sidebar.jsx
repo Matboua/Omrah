@@ -1,7 +1,7 @@
 import logo from "../../../assets/images/letter-o.webp";
 import { useRef, useState } from "react";
 import useClickOutside from "../../../hooks/useClickOutside";
-import { ChartNoAxesCombined, GraduationCap, Home, LogOut } from "lucide-react";
+import { Home, LogOut, Package, User } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -15,18 +15,18 @@ export default function Sidebar() {
 	const links = [
 		{
 			href: "/dashboard",
-			label: "dashboard",
+			label: "Dashboard",
 			logo: <Home size={20} />,
 		},
 		{
-			href: "/subjects",
-			label: "subjects",
-			logo: <GraduationCap size={20} />,
+			href: "/clients",
+			label: "Clients",
+			logo: <User size={20} />,
 		},
 		{
-			href: "/progression",
-			label: "progression",
-			logo: <ChartNoAxesCombined size={20} />,
+			href: "/packages",
+			label: "Packages",
+			logo: <Package size={20} />,
 		},
 	];
 	return (
@@ -72,7 +72,7 @@ export default function Sidebar() {
 						{links.map((link) => (
 							<Link
 								key={link.href}
-								href={link.href}
+								to={link.href}
 								className={`relative flex hover:bg-blue-50 p-2 rounded-md w-full text-neutral-500 
 									${opensidebar ? "justify-start gap-3.5" : "justify-center gap-0"} 
 									${

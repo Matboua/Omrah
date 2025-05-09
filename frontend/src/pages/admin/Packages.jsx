@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
-export default function Dashboard() {
+export default function Packages() {
 	return (
 		<section className="flex h-dvh overflow-hidden">
 			<Sidebar />
