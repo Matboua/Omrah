@@ -1,87 +1,93 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-	fetchData,
-	createItem,
-	updateItem,
-	deleteItem,
-} from "../../config/axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from '../../config/axios';
 
-// Async thunks for API operations
+// Async thunks
 export const fetchClients = createAsyncThunk(
-	"clients/fetchClients",
-	async () => {
-		return await fetchData("clients");
+	'clients/fetchClients',
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await axios.get('/api/clients');
+			return response.data;
+		} catch (err) {
+			return rejectWithValue(err.response?.data || err.message);
+		}
 	}
 );
 
-export const addClientAsync = createAsyncThunk(
-	"clients/addClient",
-	async (clientData) => {
-		return await createItem("clients", clientData);
+export const addClient = createAsyncThunk(
+	'clients/addClient',
+	async (clientData, { rejectWithValue }) => {
+		try {
+			const response = await axios.post('/clients', clientData);
+			return response.data;
+		} catch (err) {
+			return rejectWithValue(err.response?.data || err.message);
+		}
 	}
 );
 
-export const editClientAsync = createAsyncThunk(
-	"clients/editClient",
-	async (clientData) => {
-		return await updateItem("clients", clientData.id, clientData);
+export const editClient = createAsyncThunk(
+	'clients/editClient',
+	async (clientData, { rejectWithValue }) => {
+		try {
+			const response = await axios.put(`/clients/${clientData.id}`, clientData);
+			return response.data;
+		} catch (err) {
+			return rejectWithValue(err.response?.data || err.message);
+		}
 	}
 );
 
-export const deleteClientAsync = createAsyncThunk(
-	"clients/deleteClient",
-	async (id) => {
-		await deleteItem("clients", id);
-		return id;
+export const deleteClient = createAsyncThunk(
+	'clients/deleteClient',
+	async (id, { rejectWithValue }) => {
+		try {
+			const response = await axios.delete(`/api/clients/${id}`);
+			console.log(response.data.message)
+			return id;
+		} catch (err) {
+			return rejectWithValue(err.response?.data || err.message);
+		}
 	}
 );
 
+// Slice
 const clientsSlice = createSlice({
-	name: "clients",
-	initialState: [],
-	reducers: {
-		// Keep local reducers for optimistic updates
-		addClient: (state, action) => {
-			state.push(action.payload);
-		},
-		editClient: (state, action) => {
-			const { id, cin, first_name, last_name, city, phone, email } =
-				action.payload;
-			const client = state.find((client) => client.id == id);
-			if (client) {
-				client.cin = cin;
-				client.first_name = first_name;
-				client.last_name = last_name;
-				client.city = city;
-				client.phone = phone;
-				client.email = email;
-			}
-		},
-		deleteClient: (state, action) => {
-			return state.filter((client) => client.id != action.payload);
-		},
+	name: 'clients',
+	initialState: {
+		clients: [],
+		loading: false,
+		error: null,
 	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
+			.addCase(fetchClients.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
 			.addCase(fetchClients.fulfilled, (state, action) => {
-				return action.payload;
+				state.loading = false;
+				state.clients = action.payload;
 			})
-			.addCase(addClientAsync.fulfilled, (state, action) => {
-				state.push(action.payload);
+			.addCase(fetchClients.rejected, (state, action) => {
+				state.loading = false;
+				state.error = action.payload;
 			})
-			.addCase(editClientAsync.fulfilled, (state, action) => {
-				const index = state.findIndex(
-					(client) => client.id == action.payload.id
-				);
-				if (index !== -1) {
-					state[index] = action.payload;
-				}
+
+			.addCase(addClient.fulfilled, (state, action) => {
+				state.clients.push(action.payload);
 			})
-			.addCase(deleteClientAsync.fulfilled, (state, action) => {
-				return state.filter((client) => client.id != action.payload);
+
+			.addCase(editClient.fulfilled, (state, action) => {
+				const index = state.clients.findIndex(c => c.id === action.payload.id);
+				if (index !== -1) state.clients[index] = action.payload;
+			})
+
+			.addCase(deleteClient.fulfilled, (state, action) => {
+				state.clients = state.clients.filter(c => c.id !== action.payload);
 			});
 	},
 });
 
-export const { addClient, editClient, deleteClient } = clientsSlice.actions;
 export default clientsSlice.reducer;

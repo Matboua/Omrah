@@ -8,7 +8,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../admin/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteClientAsync } from "../../../store/slices/clientsReducer";
+import { deleteClient } from "../../../store/slices/clientsReducer";
+import { fetchClients } from "../../../store/slices/clientsReducer";
 
 export default function Clients() {
 	// Search and Filter States
@@ -18,7 +19,7 @@ export default function Clients() {
 	// Start Pagination
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
-	const clients = useSelector((state) => state.clients);
+	const clients = useSelector((state) => state.clients.clients);
 
 	// Apply filters
 	const filteredClients = clients.filter((client) => {
@@ -85,9 +86,15 @@ export default function Clients() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	// fetch clients
+	useEffect(() => {
+		dispatch(fetchClients());
+	}, [dispatch]);
+
+
 	// Delete Client (handleDelete)
 	const handleDelete = (id) => {
-		dispatch(deleteClientAsync(id));
+		dispatch(deleteClient(id));
 	};
 
 	// Navigate To Client Detail
@@ -216,13 +223,13 @@ export default function Clients() {
 									<td className="px-6 py-4">
 										{item.first_name
 											? item.first_name[0].toUpperCase() +
-											  item.first_name.slice(1).toLowerCase()
+											item.first_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-4">
 										{item.last_name
 											? item.last_name[0].toUpperCase() +
-											  item.last_name.slice(1).toLowerCase()
+											item.last_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-4">{item.phone || "N/A"}</td>
@@ -230,7 +237,7 @@ export default function Clients() {
 									<td className="px-6 py-4">
 										{item.city
 											? item.city[0].toUpperCase() +
-											  item.city.slice(1).toLowerCase()
+											item.city.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-2 text-center whitespace-nowrap">
