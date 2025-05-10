@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/guest/Home";
 import Login from "./pages/guest/Login";
 import Register from "./pages/guest/Register";
+import logo from "./assets/images/letter-o.webp";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -37,11 +38,16 @@ export default function AppRoutes() {
 
 		// Wait for the loading state to be false before checking role
 		if (loading) {
-			return <h1>Loading ...</h1>;
+			return (
+				<div className="relative flex justify-center items-center h-screen">
+					<div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+					<img src={logo} class="rounded-full h-8  animate-spin-reverse" />
+				</div>
+			);
 		}
 
-		if (!role || role !== 'admin') {
-			console.log('not admin')
+		if (!role || role !== "admin") {
+			console.log("not admin");
 			return <Navigate to="/login" />;
 		}
 
@@ -64,10 +70,38 @@ export default function AppRoutes() {
 				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}
 				{/* Admin Routes */}
-				<Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-				<Route path="/clients" element={<PrivateRoute><Clients /></PrivateRoute>} />
-				<Route path="/packages" element={<PrivateRoute><Packages /></PrivateRoute>} />
-				<Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+				<Route
+					path="/dashboard"
+					element={
+						<PrivateRoute>
+							<Dashboard />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/clients"
+					element={
+						<PrivateRoute>
+							<Clients />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/packages"
+					element={
+						<PrivateRoute>
+							<Packages />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/settings"
+					element={
+						<PrivateRoute>
+							<Settings />
+						</PrivateRoute>
+					}
+				/>
 				{/* <Route path="/clients" element={<Clients />} />
 				<Route path="/packages" element={<Packages />} />
 				<Route path="/settings" element={<Settings />} /> */}

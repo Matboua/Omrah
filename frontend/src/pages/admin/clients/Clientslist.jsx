@@ -91,7 +91,6 @@ export default function Clients() {
 		dispatch(fetchClients());
 	}, [dispatch]);
 
-
 	// Delete Client (handleDelete)
 	const handleDelete = (id) => {
 		dispatch(deleteClient(id));
@@ -145,7 +144,7 @@ export default function Clients() {
 							<input
 								type="text"
 								id="search"
-								className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+								className="block w-full p-2 pl-10 text-sm text-gray-900 border-gray-300 rounded-lg bg-gray-50 border focus:border-orange-200 outline-0"
 								placeholder="Search by CIN..."
 								value={searchTerm}
 								onChange={(e) => setSearchTerm(e.target.value)}
@@ -156,7 +155,7 @@ export default function Clients() {
 					{/* Filter by City */}
 					<div className="md:w-1/4">
 						<select
-							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+							className="bg-gray-50 border border-gray-300 focus:border-orange-200 text-gray-900 text-sm rounded-lg outline-0 block w-full p-2.5"
 							value={filterCity}
 							onChange={(e) => setFilterCity(e.target.value)}
 						>
@@ -223,13 +222,13 @@ export default function Clients() {
 									<td className="px-6 py-4">
 										{item.first_name
 											? item.first_name[0].toUpperCase() +
-											item.first_name.slice(1).toLowerCase()
+											  item.first_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-4">
 										{item.last_name
 											? item.last_name[0].toUpperCase() +
-											item.last_name.slice(1).toLowerCase()
+											  item.last_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-4">{item.phone || "N/A"}</td>
@@ -237,7 +236,7 @@ export default function Clients() {
 									<td className="px-6 py-4">
 										{item.city
 											? item.city[0].toUpperCase() +
-											item.city.slice(1).toLowerCase()
+											  item.city.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-2 text-center whitespace-nowrap">
