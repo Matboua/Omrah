@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PackageClass extends Model
 {
-    protected $fillable = ['package_id', 'name', 'price', 'features'];
+    protected $fillable = ['package_id', 'name', 'price', 'seats', 'features'];
 
     protected $casts = [
     'features' => 'array',
