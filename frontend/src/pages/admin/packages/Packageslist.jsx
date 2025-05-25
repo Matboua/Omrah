@@ -41,7 +41,6 @@ export default function AdminPackages() {
             setError(null);
             const res = await axios.get('/api/packages');
             setPackages(res.data);
-            console.log(res.data)
         } catch (err) {
             console.error('Failed to fetch packages:', err);
             setError('Failed to load packages. Please try again.');
@@ -57,7 +56,6 @@ export default function AdminPackages() {
             setLoading(prev => ({ ...prev, classes: true }));
             const res = await axios.get(`/api/packages/${pkgId}`);
             setClasses(res.data.classes);
-            console.log(res.data.classes)
         } catch (err) {
             console.error('Failed to fetch package classes:', err);
             toast.error('Failed to load package classes');
