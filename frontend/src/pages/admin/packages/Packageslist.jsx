@@ -41,7 +41,6 @@ export default function AdminPackages() {
 			setError(null);
 			const res = await axios.get("/api/packages");
 			setPackages(res.data);
-			console.log(res.data);
 		} catch (err) {
 			console.error("Failed to fetch packages:", err);
 			setError("Failed to load packages. Please try again.");

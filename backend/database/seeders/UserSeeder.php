@@ -13,6 +13,15 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                'cin' => 'jb524739',
+                'first_name' => 'Othman',
+                'last_name' => 'Elhyane',
+                'phone' => '0603231600',
+                'email' => 'othman@gmail.com',
+                'city' => 'Inezgane',
+                'role' => 'admin'
+            ],
+            [
                 'cin' => 'jb520110',
                 'first_name' => 'Oussama',
                 'last_name' => 'Matboua',
