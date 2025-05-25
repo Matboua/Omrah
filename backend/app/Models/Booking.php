@@ -20,9 +20,8 @@ class Booking extends Model
     {
         return $this->belongsTo(PackageClass::class);
     }
-
-    public function flight()
-    {
-        return $this->belongsTo(Flight::class);
+    
+    public function package() {
+        return $this->belongsTo(Package::class);
     }
 }
