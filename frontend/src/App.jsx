@@ -46,7 +46,7 @@ export default function AppRoutes() {
 			return (
 				<div className="relative flex justify-center items-center h-screen">
 					<div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
-					<img src={logo} class="rounded-full h-8  animate-spin-reverse" />
+					<img src={logo} className="rounded-full h-8  animate-spin-reverse" />
 				</div>
 			);
 		}
