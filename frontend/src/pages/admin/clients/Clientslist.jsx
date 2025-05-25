@@ -10,6 +10,7 @@ import Pagination from "../../admin/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteClient } from "../../../store/slices/clientsReducer";
 import { fetchClients } from "../../../store/slices/clientsReducer";
+import logo from "../../../assets/images/letter-o.webp";
 
 export default function Clients() {
 	// Search and Filter States
@@ -20,6 +21,7 @@ export default function Clients() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
 	const clients = useSelector((state) => state.clients.clients);
+	const loading = useSelector((state) => state.clients.loading);
 
 	// Apply filters
 	const filteredClients = clients.filter((client) => {
@@ -112,6 +114,17 @@ export default function Clients() {
 		setFilterCity("");
 		setCurrentPage(1);
 	};
+
+	if (loading && clients.length === 0) {
+		return (
+			<div className="p-6 flex justify-center items-center h-64">
+				<div className="relative flex justify-center items-center h-screen">
+					<div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+					<img src={logo} className="rounded-full h-8 animate-spin-reverse" />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">

@@ -10,6 +10,7 @@ import {
 	faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../../admin/Pagination";
+import logo from "../../../assets/images/letter-o.webp";
 
 export default function AdminPackages() {
 	// State management
@@ -329,7 +330,10 @@ export default function AdminPackages() {
 	if (loading.packages && packages.length === 0) {
 		return (
 			<div className="p-6 flex justify-center items-center h-64">
-				<div className="text-lg">Loading packages...</div>
+				<div className="relative flex justify-center items-center h-screen">
+					<div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+					<img src={logo} className="rounded-full h-8  animate-spin-reverse" />
+				</div>
 			</div>
 		);
 	}

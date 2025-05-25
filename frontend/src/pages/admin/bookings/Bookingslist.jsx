@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Pagination from "../../admin/Pagination"; // import the Pagination component
+import logo from "../../../assets/images/letter-o.webp";
+import { useSelector } from "react-redux";
 
 const Bookingslist = ({ data }) => {
 	const [filters, setFilters] = useState({
@@ -11,6 +13,7 @@ const Bookingslist = ({ data }) => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
+	const [loading, setLoading] = useState(true);
 
 	// Memoize filtered data for better performance
 	const filteredData = useMemo(() => {
@@ -105,6 +108,25 @@ const Bookingslist = ({ data }) => {
 				return "bg-gray-100 text-gray-700";
 		}
 	};
+
+	// Add useEffect to simulate loading (until you have a real API)
+	useEffect(() => {
+		// Simulate API loading
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, []);
+
+	if (loading && (!data || data.length === 0)) {
+		return (
+			<div className="p-6 flex justify-center items-center h-64">
+				<div className="relative flex justify-center items-center h-screen">
+					<div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+					<img src={logo} className="rounded-full h-8 animate-spin-reverse" />
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">
