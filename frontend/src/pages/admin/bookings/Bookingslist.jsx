@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Pagination from "../../admin/Pagination"; // import the Pagination component
+import axios from "../../../config/axios";
+import { toast } from "react-toastify";
 
 const Bookingslist = ({ data }) => {
 	const [filters, setFilters] = useState({
@@ -8,9 +10,28 @@ const Bookingslist = ({ data }) => {
 		packClass: "",
 		status: "",
 	});
+	const [bookings, setBookings] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
+
+	const fetchBookings = useCallback(async () => {
+			try {
+				setLoading((prev) => ({ ...prev, packages: true }));
+				setError(null);
+				const res = await axios.get("/api/bookings");
+				setBookings(res.data);
+				console.log(res.data)
+			} catch (err) {
+				console.error("Failed to fetch bookings:", err);
+				setError("Failed to load bookings. Please try again.");
+				toast.error("Failed to load bookings");
+			} finally {
+				setLoading((prev) => ({ ...prev, packages: false }));
+			}
+		}, []);
 
 	// Memoize filtered data for better performance
 	const filteredData = useMemo(() => {
@@ -106,6 +127,10 @@ const Bookingslist = ({ data }) => {
 		}
 	};
 
+	useEffect(() => {
+			fetchBookings();
+		}, [fetchBookings]);
+
 	return (
 		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">
 			{/* Filter Section */}
@@ -180,8 +205,8 @@ const Bookingslist = ({ data }) => {
 						</tr>
 					</thead>
 					<tbody className="divide-y divide-gray-200">
-						{records.length > 0 ? (
-							records.map((item) => (
+						{bookings.length > 0 ? (
+							bookings.map((item) => (
 								<tr
 									key={item.id}
 									className="bg-white border-b border-gray-200 hover:bg-gray-50"
@@ -190,10 +215,10 @@ const Bookingslist = ({ data }) => {
 										{item.user.cin}
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap">
-										{item.pack.name}
+										{item.package_class.package.name}
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap capitalize">
-										{item.pack.class}
+										{item.package_class.name}
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap">
 										<span
