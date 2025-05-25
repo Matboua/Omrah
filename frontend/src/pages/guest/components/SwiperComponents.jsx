@@ -6,9 +6,10 @@ import { Pagination, Navigation } from "swiper/modules";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
+import axios from '../../../config/axios'
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import LoginPopup from "./LoginPopup";
 
 // data test
@@ -21,7 +22,7 @@ const packagesData = [
 		description: "A special Umrah package during the holy month of Ramadan.",
 		start_date: "2025-03-01",
 		end_date: "2025-04-15",
-		levels: [
+		classes: [
 			{
 				id: 1,
 				name: "VIP",
@@ -68,7 +69,7 @@ const packagesData = [
 		description: "A special Umrah package during the holy month of Ramadan.",
 		start_date: "2025-03-01",
 		end_date: "2025-04-15",
-		levels: [
+		classes: [
 			{
 				id: 1,
 				name: "VIP",
@@ -115,7 +116,7 @@ const packagesData = [
 		description: "A special Umrah package during the holy month of Ramadan.",
 		start_date: "2025-03-01",
 		end_date: "2025-04-15",
-		levels: [
+		classes: [
 			{
 				id: 1,
 				name: "VIP",
@@ -162,7 +163,7 @@ const packagesData = [
 		description: "A special Umrah package during the holy month of Ramadan.",
 		start_date: "2025-03-01",
 		end_date: "2025-04-15",
-		levels: [
+		classes: [
 			{
 				id: 1,
 				name: "VIP",
@@ -208,6 +209,9 @@ export default function SwiperComponents() {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const navigate = useNavigate();
 	const [showLoginPopup, setShowLoginPopup] = useState(false);
+	const [packages, setPackages] = useState([]);
+	const image = "https://images.unsplash.com/photo-1574246604907-db69e30ddb97?q=80&w=1946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
 	const handleBookPackage = (pkg) => {
 		if (isAuthenticated) {
 			// User is logged in, navigate to package detail page
@@ -217,6 +221,14 @@ export default function SwiperComponents() {
 			setShowLoginPopup(true);
 		}
 	};
+	
+	useEffect(() => {
+		axios.get('/api/packages')
+			.then(res => {setPackages(res.data)
+		console.log(res.data)})
+			.then(console.log(packages))
+			.catch(err => console.error(err));
+	}, []);
 	return (
 		<>
 			{showLoginPopup && (
@@ -252,13 +264,13 @@ export default function SwiperComponents() {
 					modules={[Pagination, Navigation]}
 					className="p-3"
 				>
-					{packagesData.map((pkg) => (
+					{packages.map((pkg) => (
 						<SwiperSlide key={pkg.id}>
 							<div className="relative bg-gradient-to-br from-orange-100 to-white rounded-3xl shadow-xl overflow-hidden transition-all hover:scale-[1.01] duration-300 border border-orange-200 cursor-pointer">
 								<div
 									className="absolute inset-0 opacity-60 bg-cover bg-center"
 									style={{
-										backgroundImage: `url('${pkg.image}')`,
+										backgroundImage: `url('${image}')`,
 									}}
 								/>
 
@@ -276,32 +288,29 @@ export default function SwiperComponents() {
 										</p>
 
 										<div className="space-y-4">
-											{pkg.levels.map((level) => (
+											{pkg.classes.map((classe) => (
 												<div
-													key={level.id}
+													key={classe.id}
 													className="bg-white/80 backdrop-blur rounded-xl border border-orange-100 p-4 shadow-sm hover:shadow-md transition-all"
 												>
 													<div className="flex justify-between items-center mb-2">
 														<h3 className="text-lg font-semibold text-orange-700">
-															{level.name}
+															{classe.name}
 														</h3>
 														<span className="text-orange-600 font-bold">
-															{level.price.toLocaleString()} DH
+															{classe.price.toLocaleString()} DH
 														</span>
 													</div>
 													<p className="text-sm text-gray-600 mb-2">
-														{level.description}
+														{classe.description}
 													</p>
 													<ul className="text-sm text-gray-800 space-y-1">
-														{level.features.map((feature) => (
+														{classe.features.map((feature) => (
 															<li
-																key={feature.id}
+																key={classe.id+'/'+ classe.features.indexOf(feature)}
 																className="flex items-center gap-2"
 															>
-																<span className="text-base">
-																	{feature.icon}
-																</span>
-																<span>{feature.title}</span>
+																{feature}
 															</li>
 														))}
 													</ul>

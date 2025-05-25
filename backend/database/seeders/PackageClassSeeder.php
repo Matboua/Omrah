@@ -16,13 +16,13 @@ class PackageClassSeeder extends Seeder
     {
         $classes = [
             'Economic' => [
-                "3-star hotel accommodation",
+                "3-star hotel",
                 "Group transport by bus",
                 "Standard meals",
                 "Shared room"
             ],
             'Business' => [
-                "4-star hotel accommodation near Haram",
+                "4-star hotel near Haram",
                 "Private A/C transport",
                 "Buffet meals",
                 "Double occupancy room"
