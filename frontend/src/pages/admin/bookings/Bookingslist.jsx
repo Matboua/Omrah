@@ -13,26 +13,24 @@ const Bookingslist = ({ data }) => {
 		status: "",
 	});
 	const [bookings, setBookings] = useState([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
-	const [loading, setLoading] = useState(true);
 
 	const fetchBookings = useCallback(async () => {
 		try {
-			setLoading((prev) => ({ ...prev, packages: true }));
+			setLoading(true);
 			setError(null);
 			const res = await axios.get("/api/bookings");
 			setBookings(res.data);
-			console.log(res.data);
 		} catch (err) {
 			console.error("Failed to fetch bookings:", err);
 			setError("Failed to load bookings. Please try again.");
 			toast.error("Failed to load bookings");
 		} finally {
-			setLoading((prev) => ({ ...prev, packages: false }));
+			setLoading(false);
 		}
 	}, []);
 
@@ -130,15 +128,11 @@ const Bookingslist = ({ data }) => {
 		}
 	};
 
-	// Add useEffect to simulate loading (until you have a real API)
 	useEffect(() => {
-		// Simulate API loading
-		setTimeout(() => {
-			setLoading(false);
-		}, 1000);
-	}, []);
+		fetchBookings();
+	}, [fetchBookings]);
 
-	if (loading && (!data || data.length === 0)) {
+	if (loading) {
 		return (
 			<div className="p-6 flex justify-center items-center h-64">
 				<div className="relative flex justify-center items-center h-screen">
@@ -148,10 +142,6 @@ const Bookingslist = ({ data }) => {
 			</div>
 		);
 	}
-
-	useEffect(() => {
-		fetchBookings();
-	}, [fetchBookings]);
 
 	return (
 		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">
