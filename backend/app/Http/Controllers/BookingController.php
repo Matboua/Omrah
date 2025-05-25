@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+
+
+    public function index(Request $request)
+{
+    $user = auth()->user();
+
+    $query = Booking::with(['user', 'packageClass.package']);
+
+    // If the user is not an admin, only show their own bookings
+    if ($user->role !== 'admin') {
+        $query->where('user_id', $user->id);
+    }
+
+    // Optionally filter by status (if you pass ?status=pending for example)
+    if ($request->has('status')) {
+        $query->where('status', $request->status);
+    }
+
+    $bookings = $query->latest()->get();
+
+    return response()->json($bookings);
+}
     // store booking
     /**
      * Store a new booking.
