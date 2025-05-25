@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    
+    // store booking
+    /**
+     * Store a new booking.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
 {
     $request->validate([

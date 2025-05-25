@@ -45,6 +45,7 @@ Route::middleware(['auth:sanctum', IsAdmin::class])->group(function () {
     Route::delete('/classes/{id}', [PackageClassController::class, 'destroy']);
 
     // Bookings
+    Route::post('/bookings', [BookingController::class, 'store']);
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
 });

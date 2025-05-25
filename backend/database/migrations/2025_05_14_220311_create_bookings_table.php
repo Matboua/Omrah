@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('package_id')->constrained()->onDelete('cascade');
             $table->foreignId('package_class_id')->constrained()->onDelete('cascade');
-            $table->foreignId('flight_id')->constrained()->onDelete('cascade');
+            $table->integer('seats_booked')->default(1);
+            $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->timestamps();
         });

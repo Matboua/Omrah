@@ -13,6 +13,7 @@ class PackageClass extends Model
 
     protected $casts = [
     'features' => 'array',
+    'departure_date' => 'date'
     ];
 
     public function package()
