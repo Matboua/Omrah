@@ -53,7 +53,7 @@ class PackageClassSeeder extends Seeder
                         'Business' => 20,
                         'VIP' => 10,
                     },
-                    'features' => json_encode($features), // stored as JSON array
+                    'features' => $features, // stored as JSON array
                 ]);
             }
         }

@@ -13,7 +13,7 @@ class PackageClassController extends Controller
         return PackageClass::with('package')->get();
     }
 
-    // GET /api/package-classes/{id}
+    // GET /api/packages/{id}
     public function show($id)
     {
         return PackageClass::with('package')->findOrFail($id);
