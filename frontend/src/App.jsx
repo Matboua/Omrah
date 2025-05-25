@@ -24,6 +24,7 @@ import PackageDetail from "./pages/guest/PackageDetail";
 // toastify dependancies
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Bookings from "./pages/admin/bookings/Bookings";
 
 // import other roles and components...
 
@@ -82,6 +83,14 @@ export default function AppRoutes() {
 					element={
 						<PrivateRoute>
 							<Dashboard />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/bookings"
+					element={
+						<PrivateRoute>
+							<Bookings />
 						</PrivateRoute>
 					}
 				/>

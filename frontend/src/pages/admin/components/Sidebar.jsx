@@ -1,7 +1,7 @@
 import logo from "../../../assets/images/letter-o.webp";
 import { useRef, useState } from "react";
 import useClickOutside from "../../../hooks/useClickOutside";
-import { Home, LogOut, Package, User } from "lucide-react";
+import { Home, LogOut, Package, Plane, User } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../store/slices/authSlice";
@@ -32,6 +32,11 @@ export default function Sidebar() {
 			href: "/packages",
 			label: "Packages",
 			logo: <Package size={20} />,
+		},
+		{
+			href: "/bookings",
+			label: "Bookings",
+			logo: <Plane size={20} />,
 		},
 	];
 
