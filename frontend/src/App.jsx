@@ -19,10 +19,11 @@ import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Clients from "./pages/admin/clients/Clients";
 import Packages from "./pages/admin/packages/Packages";
 import Settings from "./pages/admin/Settings";
+import PackageDetail from "./pages/guest/PackageDetail";
 
 // toastify dependancies
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import other roles and components...
 
@@ -74,6 +75,7 @@ export default function AppRoutes() {
 				<Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
 				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}
+				<Route path="/package/:id" element={<PackageDetail />} />
 				{/* Admin Routes */}
 				<Route
 					path="/dashboard"
@@ -110,9 +112,8 @@ export default function AppRoutes() {
 				{/* <Route path="/clients" element={<Clients />} />
 				<Route path="/packages" element={<Packages />} />
 				<Route path="/settings" element={<Settings />} /> */}
-
 			</Routes>
-				<ToastContainer />
+			<ToastContainer />
 		</BrowserRouter>
 	);
 }

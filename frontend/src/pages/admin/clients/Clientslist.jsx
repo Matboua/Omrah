@@ -171,7 +171,7 @@ export default function Clients() {
 					{/* Reset Filters Button */}
 					<button
 						onClick={resetFilters}
-						className="px-4 py-2.5 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+						className="px-4 py-1.5 bg-gray-50 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 cursor-pointer"
 					>
 						Reset
 					</button>
@@ -202,6 +202,9 @@ export default function Clients() {
 							</th>
 							<th scope="col" className="px-6 py-3">
 								City
+							</th>
+							<th scope="col" className="px-6 py-3">
+								Role
 							</th>
 							<th scope="col" className="px-6 py-3 text-center">
 								Action
@@ -237,6 +240,12 @@ export default function Clients() {
 										{item.city
 											? item.city[0].toUpperCase() +
 											  item.city.slice(1).toLowerCase()
+											: "N/A"}
+									</td>
+									<td className="px-6 py-4">
+										{item.role
+											? item.role[0].toUpperCase() +
+											  item.role.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
 									<td className="px-6 py-2 text-center whitespace-nowrap">

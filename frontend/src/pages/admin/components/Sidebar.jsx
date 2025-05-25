@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../store/slices/authSlice";
 import { useDispatch } from "react-redux";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 export default function Sidebar() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Sidebar() {
 		},
 		{
 			href: "/clients",
-			label: "Clients",
+			label: "Users",
 			logo: <User size={20} />,
 		},
 		{
@@ -37,14 +37,14 @@ export default function Sidebar() {
 
 	// function to logout
 	const handleLogout = async () => {
-			  try {
-				await dispatch(logoutUser()).unwrap();
-				Cookies.remove('XSRF-TOKEN');
-				navigate('/login'); // or wherever you want to send the user after logout
-			  } catch (error) {
-				console.error(error);
-			  }
-			};
+		try {
+			await dispatch(logoutUser()).unwrap();
+			Cookies.remove("XSRF-TOKEN");
+			navigate("/login"); // or wherever you want to send the user after logout
+		} catch (error) {
+			console.error(error);
+		}
+	};
 	return (
 		<div className="absolute md:relative z-50">
 			<aside
