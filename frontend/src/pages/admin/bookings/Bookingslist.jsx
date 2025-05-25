@@ -107,7 +107,7 @@ const Bookingslist = ({ data }) => {
 	};
 
 	return (
-		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full overflow-x-auto shadow-md sm:rounded-lg">
+		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">
 			{/* Filter Section */}
 			<div className="p-4 bg-white border-b border-gray-200">
 				<div className="flex flex-col md:flex-row gap-4">
@@ -167,29 +167,35 @@ const Bookingslist = ({ data }) => {
 					</div>
 				</div>
 			</div>
-			{/* Table */}
-			<div className="overflow-x-auto w-full h-full">
-				<table className="w-full min-w-[750px] h-full text-sm text-left rtl:text-right text-gray-500 border border-gray-300">
-					<thead className="text-xs text-gray-700 uppercase bg-gray-100">
+			{/* Table Container */}
+			<div className="flex-1 overflow-x-auto">
+				<table className="w-full min-w-[750px] text-sm text-left text-gray-500">
+					<thead className="text-xs text-gray-700 uppercase bg-gray-100 sticky top-0">
 						<tr>
-							<th className="px-6 py-3">CIN</th>
-							<th className="px-6 py-3">Pack Name</th>
-							<th className="px-6 py-3">Class</th>
-							<th className="px-6 py-3">Status</th>
-							<th className="px-6 py-3">Date</th>
+							<th className="px-6 py-3 font-medium">CIN</th>
+							<th className="px-6 py-3 font-medium">Pack Name</th>
+							<th className="px-6 py-3 font-medium">Class</th>
+							<th className="px-6 py-3 font-medium">Status</th>
+							<th className="px-6 py-3 font-medium">Date</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className="divide-y divide-gray-200">
 						{records.length > 0 ? (
 							records.map((item) => (
 								<tr
 									key={item.id}
 									className="bg-white border-b border-gray-200 hover:bg-gray-50"
 								>
-									<td className="px-6 py-4">{item.user.cin}</td>
-									<td className="px-6 py-4">{item.pack.name}</td>
-									<td className="px-6 py-4 capitalize">{item.pack.class}</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
+										{item.user.cin}
+									</td>
+									<td className="px-6 py-4 whitespace-nowrap">
+										{item.pack.name}
+									</td>
+									<td className="px-6 py-4 whitespace-nowrap capitalize">
+										{item.pack.class}
+									</td>
+									<td className="px-6 py-4 whitespace-nowrap">
 										<span
 											className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(
 												item.status
@@ -198,14 +204,14 @@ const Bookingslist = ({ data }) => {
 											{item.status}
 										</span>
 									</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
 										{new Date(item.created_at).toLocaleDateString()}
 									</td>
 								</tr>
 							))
 						) : (
 							<tr>
-								<td colSpan="5" className="px-6 py-4 text-center text-gray-500">
+								<td colSpan="5" className="px-6 py-8 text-center text-gray-500">
 									No bookings found.
 								</td>
 							</tr>
@@ -215,11 +221,13 @@ const Bookingslist = ({ data }) => {
 			</div>
 			{/* Pagination */}
 			{filteredData.length > 0 && (
-				<Pagination
-					currentPage={currentPage}
-					npage={totalPages}
-					handlePageChange={handlePageChange}
-				/>
+				<div className="mt-auto border-t border-gray-200">
+					<Pagination
+						currentPage={currentPage}
+						npage={totalPages}
+						handlePageChange={handlePageChange}
+					/>
+				</div>
 			)}
 		</div>
 	);

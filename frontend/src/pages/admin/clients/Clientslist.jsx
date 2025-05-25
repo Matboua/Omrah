@@ -114,9 +114,9 @@ export default function Clients() {
 	};
 
 	return (
-		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full overflow-x-auto shadow-md sm:rounded-lg">
+		<div className="relative flex flex-col gap-3 min-h-[calc(100dvh-96px)] w-full bg-white rounded-lg shadow-sm border border-gray-200">
 			{/* Search and Filter Section */}
-			<div className="p-4 bg-white border-b border-gray-200 ">
+			<div className="p-4 border-b border-gray-200">
 				<div className="flex flex-col md:flex-row gap-4">
 					{/* Search Input */}
 					<div className="flex-1">
@@ -177,78 +177,79 @@ export default function Clients() {
 					</button>
 				</div>
 			</div>
-			{/* Table */}
-			<div className="overflow-x-auto w-full h-full">
-				<table className="w-full min-w-[750px]  h-full text-sm text-left rtl:text-right text-gray-500 border border-gray-300">
-					<thead className="text-xs text-gray-700 uppercase bg-gray-100">
+			{/* Table Container */}
+			<div className="flex-1 overflow-x-auto">
+				<table className="w-full min-w-[750px] text-sm text-left text-gray-500">
+					<thead className="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
 						<tr>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								Id
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								CIN
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								First Name
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								Last Name
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								Phone
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								Email
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								City
 							</th>
-							<th scope="col" className="px-6 py-3">
+							<th scope="col" className="px-6 py-4 font-medium">
 								Role
 							</th>
-							<th scope="col" className="px-6 py-3 text-center">
+							<th scope="col" className="px-6 py-4 font-medium text-center">
 								Action
 							</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className="divide-y divide-gray-200">
 						{records.length > 0 ? (
 							records.map((item, key) => (
-								<tr
-									key={key}
-									className="bg-white border-b  border-gray-200 hover:bg-gray-50"
-								>
-									<td className="p-6 py-4">{item.id}</td>
-									<td className="p-6 py-4">
+								<tr key={key} className="hover:bg-gray-50">
+									<td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
+									<td className="px-6 py-4 whitespace-nowrap">
 										{item.cin ? item.cin.toUpperCase() : "N/A"}
 									</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
 										{item.first_name
 											? item.first_name[0].toUpperCase() +
 											  item.first_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
 										{item.last_name
 											? item.last_name[0].toUpperCase() +
 											  item.last_name.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
-									<td className="px-6 py-4">{item.phone || "N/A"}</td>
-									<td className="px-6 py-4">{item.email || "N/A"}</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
+										{item.phone || "N/A"}
+									</td>
+									<td className="px-6 py-4 whitespace-nowrap">
+										{item.email || "N/A"}
+									</td>
+									<td className="px-6 py-4 whitespace-nowrap">
 										{item.city
 											? item.city[0].toUpperCase() +
 											  item.city.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
-									<td className="px-6 py-4">
+									<td className="px-6 py-4 whitespace-nowrap">
 										{item.role
 											? item.role[0].toUpperCase() +
 											  item.role.slice(1).toLowerCase()
 											: "N/A"}
 									</td>
-									<td className="px-6 py-2 text-center whitespace-nowrap">
+									<td className="px-6 py-4 text-center whitespace-nowrap">
 										<button
 											onClick={() => detailClient(item.id)}
 											className="py-1.5 px-4 text-blue-500 bg-blue-100 hover:bg-blue-200 rounded-full cursor-pointer transition duration-300 ease-in-out"
@@ -272,7 +273,7 @@ export default function Clients() {
 							))
 						) : (
 							<tr>
-								<td colSpan="8" className="px-6 py-4 text-center">
+								<td colSpan="8" className="px-6 py-8 text-center text-gray-500">
 									No clients found matching your search criteria.
 								</td>
 							</tr>
