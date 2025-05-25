@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Calendar, MapPin, Users, Star, Check, ArrowLeft } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import axios from '../../config/axios'
 
 // This would normally come from your API or props
 const packagesData = [
@@ -216,22 +217,24 @@ export default function PackageDetail() {
 
 		// Prepare booking data
 		const bookingData = {
-			client: {
-				id: user.id,
-				first_name: user.first_name,
-				last_name: user.last_name,
-				email: user.email,
-				phone: user.phone,
-				cin: user.cin,
-				city: user.city,
-			},
-			package: {
-				id: packageData.id,
-				name: packageData.name,
-				start_date: packageData.start_date,
-				end_date: packageData.end_date,
-			},
-			package_level: selectedLevel,
+			package_id: packageData.id,
+			package_class_id: selectedLevel.id
+			// client: {
+			// 	id: user.id,
+			// 	first_name: user.first_name,
+			// 	last_name: user.last_name,
+			// 	email: user.email,
+			// 	phone: user.phone,
+			// 	cin: user.cin,
+			// 	city: user.city,
+			// },
+			// package: {
+			// 	id: packageData.id,
+			// 	name: packageData.name,
+			// 	start_date: packageData.start_date,
+			// 	end_date: packageData.end_date,
+			// },
+			// package_level: selectedLevel,
 		};
 
 		try {
@@ -239,7 +242,7 @@ export default function PackageDetail() {
 			console.log("Booking data to send:", bookingData);
 
 			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			await axios.post('api/bookings',bookingData)
 
 			alert(
 				"Booking successful! You will receive a confirmation email shortly."
