@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../store/slices/authSlice";
+import { NavLink } from "react-router-dom";
 import Cookies from 'js-cookie'
-import axios from '../../../config/axios'
 
 export default function Header() {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -35,12 +35,34 @@ export default function Header() {
 			</a>
 			{/* Links */}
 			<div className="hidden md:flex gap-15 font-semibold">
-				<a href="/" className="text-orange-600">
+				<NavLink to="/" className={({isActive}) => 
+							isActive 
+								? 'text-orange-600' 
+								: ''
+							}>
 					Home
-				</a>
-				<a href="/services">Services</a>
-				<a href="/about">About</a>
-				<a href="/contact">Contact</a>
+				</NavLink>
+				<NavLink to="/services"
+				className={({isActive}) => 
+							isActive 
+								? 'text-orange-600' 
+								: ''
+							}
+				>Packages</NavLink>
+				<NavLink to="/about"
+				className={({isActive}) => 
+							isActive 
+								? 'text-orange-600' 
+								: ''
+							}
+				>About</NavLink>
+				<NavLink to="/contact"
+				className={({isActive}) => 
+							isActive 
+								? 'text-orange-600' 
+								: ''
+							}
+				>Contact</NavLink>
 			</div>
 			{/* Login + Register */}
 			{isAuthenticated ? (
@@ -52,18 +74,18 @@ export default function Header() {
 				</button>
 			) : (
 				<div className="hidden lg:flex gap-3">
-					<a
-						href="/register"
+					<NavLink
+						to="/register"
 						className="px-6 py-2 text-base font-semibold border rounded bg-white text-orange-600"
 					>
 						Register
-					</a>
-					<a
-						href="/login"
+					</NavLink>
+					<NavLink
+						to="/login"
 						className="px-6 py-2 text-base font-semibold border rounded bg-orange-600 text-white"
 					>
 						Login
-					</a>
+					</NavLink>
 				</div>
 			)}
 			{/* Menu */}
