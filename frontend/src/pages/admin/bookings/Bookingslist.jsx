@@ -4,6 +4,8 @@ import axios from "../../../config/axios";
 import { toast } from "react-toastify";
 import logo from "../../../assets/images/letter-o.webp";
 import { useSelector } from "react-redux";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Bookingslist = ({ data }) => {
 	const [filters, setFilters] = useState({
@@ -18,6 +20,10 @@ const Bookingslist = ({ data }) => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
+
+	const [showStatusModal, setShowStatusModal] = useState(false);
+	const [selectedBooking, setSelectedBooking] = useState(null);
+	const [newStatus, setNewStatus] = useState("");
 
 	const fetchBookings = useCallback(async () => {
 		try {
@@ -128,6 +134,39 @@ const Bookingslist = ({ data }) => {
 		}
 	};
 
+	const handleStatusClick = (booking) => {
+		setSelectedBooking(booking);
+		setNewStatus(booking.status);
+		setShowStatusModal(true);
+	};
+
+	const handleStatusUpdate = async () => {
+		try {
+			setLoading(true);
+			// API call to update the status
+			await axios.put(`/api/bookings/${selectedBooking.id}/status`, {
+				status: newStatus,
+			});
+
+			// Update local state
+			setBookings((prevBookings) =>
+				prevBookings.map((booking) =>
+					booking.id === selectedBooking.id
+						? { ...booking, status: newStatus }
+						: booking
+				)
+			);
+
+			toast.success("Booking status updated successfully");
+			setShowStatusModal(false);
+		} catch (error) {
+			console.error("Failed to update status:", error);
+			toast.error("Failed to update status");
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	useEffect(() => {
 		fetchBookings();
 	}, [fetchBookings]);
@@ -214,6 +253,7 @@ const Bookingslist = ({ data }) => {
 							<th className="px-6 py-3 font-medium">Class</th>
 							<th className="px-6 py-3 font-medium">Status</th>
 							<th className="px-6 py-3 font-medium">Date</th>
+							<th className="px-6 py-3 font-medium">Update Status</th>
 						</tr>
 					</thead>
 					<tbody className="divide-y divide-gray-200">
@@ -244,6 +284,19 @@ const Bookingslist = ({ data }) => {
 									<td className="px-6 py-4 whitespace-nowrap">
 										{new Date(item.created_at).toLocaleDateString()}
 									</td>
+									<td className="px-6 py-4 whitespace-nowrap">
+										<button
+											onClick={() => handleStatusClick(item)}
+											disabled={item.status === "confirmed"}
+											className={`px-4 py-2 rounded-lg text-sm font-medium ${
+												item.status === "confirmed"
+													? "bg-gray-100 text-gray-400 cursor-not-allowed"
+													: "bg-blue-50 text-blue-600 hover:bg-blue-100"
+											}`}
+										>
+											Update Status
+										</button>
+									</td>
 								</tr>
 							))
 						) : (
@@ -264,6 +317,84 @@ const Bookingslist = ({ data }) => {
 						npage={totalPages}
 						handlePageChange={handlePageChange}
 					/>
+				</div>
+			)}
+			{showStatusModal && (
+				<div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+					<div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+						{/* Modal Header */}
+						<div className="flex items-center justify-between p-4 border-b">
+							<h3 className="text-xl font-semibold text-gray-900">
+								Update Booking Status
+							</h3>
+							<button
+								onClick={() => setShowStatusModal(false)}
+								className="text-gray-400 hover:text-gray-500 focus:outline-none"
+							>
+								<FontAwesomeIcon icon={faXmark} className="h-5 w-5" />
+							</button>
+						</div>
+
+						{/* Modal Body */}
+						<div className="p-4">
+							<div className="mb-4">
+								<p className="text-sm text-gray-500 mb-2">
+									Current Status:{" "}
+									<span
+										className={`font-medium ${getStatusColor(
+											selectedBooking?.status
+										)}`}
+									>
+										{selectedBooking?.status.toUpperCase()}
+									</span>
+								</p>
+
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									New Status
+								</label>
+								<select
+									value={newStatus}
+									onChange={(e) => setNewStatus(e.target.value)}
+									disabled={selectedBooking?.status === "confirmed"}
+									className="w-full p-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500"
+								>
+									<option value="pending">Pending</option>
+									<option value="confirmed">Confirmed</option>
+									<option value="canceled">Canceled</option>
+								</select>
+							</div>
+
+							{selectedBooking?.status === "confirmed" ? (
+								<p className="text-sm text-red-600 mb-4">
+									This booking is confirmed and cannot be modified.
+								</p>
+							) : (
+								<p className="text-sm text-gray-500 mb-4">
+									Are you sure you want to update this booking's status?
+								</p>
+							)}
+
+							<div className="flex justify-end gap-3">
+								<button
+									onClick={() => setShowStatusModal(false)}
+									className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
+								>
+									Cancel
+								</button>
+								<button
+									onClick={handleStatusUpdate}
+									disabled={selectedBooking?.status === "confirmed" || loading}
+									className={`px-4 py-2 text-sm font-medium text-white rounded-lg ${
+										selectedBooking?.status === "confirmed" || loading
+											? "bg-gray-300 cursor-not-allowed"
+											: "bg-orange-600 hover:bg-orange-700"
+									}`}
+								>
+									{loading ? "Updating..." : "Update Status"}
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			)}
 		</div>
