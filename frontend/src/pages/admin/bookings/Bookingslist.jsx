@@ -144,7 +144,7 @@ const Bookingslist = ({ data }) => {
 		try {
 			setLoading(true);
 			// API call to update the status
-			await axios.put(`/api/bookings/${selectedBooking.id}/status`, {
+			await axios.put(`/api/bookings/${selectedBooking.id}`, {
 				status: newStatus,
 			});
 
