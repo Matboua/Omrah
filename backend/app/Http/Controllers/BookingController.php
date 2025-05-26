@@ -49,15 +49,6 @@ class BookingController extends Controller
             return response()->json(['message' => 'No available seats for this class.'], 400);
         }
 
-        // Check if the user already booked this class
-        $alreadyBooked = Booking::where('user_id', $user->id)
-            ->where('package_class_id', $packageClass->id)
-            ->exists();
-
-        if ($alreadyBooked) {
-            return response()->json(['message' => 'You have already booked this class.'], 400);
-        }
-
         // Create the booking
         $booking = Booking::create([
             'user_id' => $user->id,
