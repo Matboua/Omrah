@@ -30,9 +30,10 @@ export const editClient = createAsyncThunk(
 	'clients/editClient',
 	async (clientData, { rejectWithValue }) => {
 		try {
-			const response = await axios.put(`/clients/${clientData.id}`, clientData);
+			const response = await axios.put(`api/clients/${clientData.id}`, clientData);
 			return response.data;
 		} catch (err) {
+			console.error(err)
 			return rejectWithValue(err.response?.data || err.message);
 		}
 	}

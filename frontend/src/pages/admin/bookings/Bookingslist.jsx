@@ -287,9 +287,9 @@ const Bookingslist = ({ data }) => {
 									<td className="px-6 py-4 whitespace-nowrap">
 										<button
 											onClick={() => handleStatusClick(item)}
-											disabled={item.status === "confirmed"}
+											disabled={item.status === "confirmed" || item.status === "cancelled"}
 											className={`px-4 py-2 rounded-lg text-sm font-medium ${
-												item.status === "confirmed"
+												item.status === "confirmed" || item.status === "cancelled"
 													? "bg-gray-100 text-gray-400 cursor-not-allowed"
 													: "bg-blue-50 text-blue-600 hover:bg-blue-100"
 											}`}
