@@ -127,7 +127,7 @@ const Bookingslist = ({ data }) => {
 				return "bg-green-100 text-green-700";
 			case "pending":
 				return "bg-yellow-100 text-yellow-700";
-			case "canceled":
+			case "cancelled":
 				return "bg-red-100 text-red-700";
 			default:
 				return "bg-gray-100 text-gray-700";
@@ -230,7 +230,7 @@ const Bookingslist = ({ data }) => {
 							<option value="">All Status</option>
 							<option value="pending">Pending</option>
 							<option value="confirmed">Confirmed</option>
-							<option value="canceled">Canceled</option>
+							<option value="cancelled">Cancelled</option>
 						</select>
 					</div>
 					<div className="md:w-1/5">
@@ -360,7 +360,7 @@ const Bookingslist = ({ data }) => {
 								>
 									<option value="pending">Pending</option>
 									<option value="confirmed">Confirmed</option>
-									<option value="canceled">Canceled</option>
+									<option value="cancelled">Cancelled</option>
 								</select>
 							</div>
 
