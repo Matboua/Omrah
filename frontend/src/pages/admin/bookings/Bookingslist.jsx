@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import Pagination from "../../admin/Pagination"; // import the Pagination component
+import Pagination from "../../admin/Pagination";
 import axios from "../../../config/axios";
 import { toast } from "react-toastify";
 import logo from "../../../assets/images/letter-o.webp";
-import { useSelector } from "react-redux";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Bookingslist = ({ data }) => {
+const Bookingslist = () => {
 	const [filters, setFilters] = useState({
 		cin: "",
 		packName: "",
@@ -16,7 +15,6 @@ const Bookingslist = ({ data }) => {
 	});
 	const [bookings, setBookings] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const recordsPerPage = 6;
@@ -28,12 +26,10 @@ const Bookingslist = ({ data }) => {
 	const fetchBookings = useCallback(async () => {
 		try {
 			setLoading(true);
-			setError(null);
 			const res = await axios.get("/api/bookings");
 			setBookings(res.data);
 		} catch (err) {
 			console.error("Failed to fetch bookings:", err);
-			setError("Failed to load bookings. Please try again.");
 			toast.error("Failed to load bookings");
 		} finally {
 			setLoading(false);
@@ -42,15 +38,8 @@ const Bookingslist = ({ data }) => {
 
 	// Memoize filtered data for better performance
 	const filteredData = useMemo(() => {
-		if (!Array.isArray(data)) return [];
-
-		return data.filter((item) => {
-			if (
-				!item?.user?.cin ||
-				!item?.pack?.name ||
-				!item?.pack?.class ||
-				!item?.status
-			) {
+		return bookings.filter((item) => {
+			if (!item?.user || !item?.package_class?.package) {
 				return false;
 			}
 
@@ -60,11 +49,14 @@ const Bookingslist = ({ data }) => {
 
 			const nameMatch =
 				!filters.packName ||
-				item.pack.name.toLowerCase().includes(filters.packName.toLowerCase());
+				item.package_class.package.name
+					.toLowerCase()
+					.includes(filters.packName.toLowerCase());
 
 			const classMatch =
 				!filters.packClass ||
-				item.pack.class.toLowerCase() === filters.packClass.toLowerCase();
+				item.package_class.name.toLowerCase() ===
+					filters.packClass.toLowerCase();
 
 			const statusMatch =
 				!filters.status ||
@@ -72,7 +64,7 @@ const Bookingslist = ({ data }) => {
 
 			return cinMatch && nameMatch && classMatch && statusMatch;
 		});
-	}, [data, filters]);
+	}, [bookings, filters]);
 
 	// Calculate total pages
 	const totalPages = Math.max(
@@ -113,6 +105,7 @@ const Bookingslist = ({ data }) => {
 			packClass: "",
 			status: "",
 		});
+		setCurrentPage(1);
 	};
 
 	// Handle page changes
@@ -143,7 +136,6 @@ const Bookingslist = ({ data }) => {
 	const handleStatusUpdate = async () => {
 		try {
 			setLoading(true);
-			// API call to update the status
 			await axios.put(`/api/bookings/${selectedBooking.id}`, {
 				status: newStatus,
 			});
@@ -161,7 +153,7 @@ const Bookingslist = ({ data }) => {
 			setShowStatusModal(false);
 		} catch (error) {
 			console.error("Failed to update status:", error);
-			toast.error("Failed to update status");
+			toast.error(error?.response?.data?.message || "Failed to update status");
 		} finally {
 			setLoading(false);
 		}
@@ -257,8 +249,8 @@ const Bookingslist = ({ data }) => {
 						</tr>
 					</thead>
 					<tbody className="divide-y divide-gray-200">
-						{bookings.length > 0 ? (
-							bookings.map((item) => (
+						{records.length > 0 ? (
+							records.map((item) => (
 								<tr
 									key={item.id}
 									className="bg-white border-b border-gray-200 hover:bg-gray-50"
@@ -287,9 +279,13 @@ const Bookingslist = ({ data }) => {
 									<td className="px-6 py-4 whitespace-nowrap">
 										<button
 											onClick={() => handleStatusClick(item)}
-											disabled={item.status === "confirmed"}
+											disabled={
+												item.status === "confirmed" ||
+												item.status === "cancelled"
+											}
 											className={`px-4 py-2 rounded-lg text-sm font-medium ${
-												item.status === "confirmed"
+												item.status === "confirmed" ||
+												item.status === "cancelled"
 													? "bg-gray-100 text-gray-400 cursor-not-allowed"
 													: "bg-blue-50 text-blue-600 hover:bg-blue-100"
 											}`}
@@ -301,7 +297,7 @@ const Bookingslist = ({ data }) => {
 							))
 						) : (
 							<tr>
-								<td colSpan="5" className="px-6 py-8 text-center text-gray-500">
+								<td colSpan="6" className="px-6 py-8 text-center text-gray-500">
 									No bookings found.
 								</td>
 							</tr>
@@ -355,7 +351,10 @@ const Bookingslist = ({ data }) => {
 								<select
 									value={newStatus}
 									onChange={(e) => setNewStatus(e.target.value)}
-									disabled={selectedBooking?.status === "confirmed"}
+									disabled={
+										selectedBooking?.status === "confirmed" ||
+										selectedBooking?.status === "cancelled"
+									}
 									className="w-full p-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500"
 								>
 									<option value="pending">Pending</option>
@@ -364,9 +363,11 @@ const Bookingslist = ({ data }) => {
 								</select>
 							</div>
 
-							{selectedBooking?.status === "confirmed" ? (
+							{selectedBooking?.status === "confirmed" ||
+							selectedBooking?.status === "cancelled" ? (
 								<p className="text-sm text-red-600 mb-4">
-									This booking is confirmed and cannot be modified.
+									This booking cannot be modified as it is{" "}
+									{selectedBooking?.status}.
 								</p>
 							) : (
 								<p className="text-sm text-gray-500 mb-4">
@@ -383,9 +384,15 @@ const Bookingslist = ({ data }) => {
 								</button>
 								<button
 									onClick={handleStatusUpdate}
-									disabled={selectedBooking?.status === "confirmed" || loading}
+									disabled={
+										selectedBooking?.status === "confirmed" ||
+										selectedBooking?.status === "cancelled" ||
+										loading
+									}
 									className={`px-4 py-2 text-sm font-medium text-white rounded-lg ${
-										selectedBooking?.status === "confirmed" || loading
+										selectedBooking?.status === "confirmed" ||
+										selectedBooking?.status === "cancelled" ||
+										loading
 											? "bg-gray-300 cursor-not-allowed"
 											: "bg-orange-600 hover:bg-orange-700"
 									}`}

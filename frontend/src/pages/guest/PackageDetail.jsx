@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 import { Calendar, MapPin, Users, Star, Check, ArrowLeft } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import axios from '../../config/axios'
+import axios from "../../config/axios";
+import { toast } from "react-toastify";
 
 // This would normally come from your API or props
 const packagesData = [
@@ -209,7 +210,7 @@ export default function PackageDetail() {
 
 	const handleBooking = async () => {
 		if (!selectedLevel) {
-			alert("Please select a package level first");
+			toast.warning("Please select a package level first");
 			return;
 		}
 
@@ -218,39 +219,20 @@ export default function PackageDetail() {
 		// Prepare booking data
 		const bookingData = {
 			package_id: packageData.id,
-			package_class_id: selectedLevel.id
-			// client: {
-			// 	id: user.id,
-			// 	first_name: user.first_name,
-			// 	last_name: user.last_name,
-			// 	email: user.email,
-			// 	phone: user.phone,
-			// 	cin: user.cin,
-			// 	city: user.city,
-			// },
-			// package: {
-			// 	id: packageData.id,
-			// 	name: packageData.name,
-			// 	start_date: packageData.start_date,
-			// 	end_date: packageData.end_date,
-			// },
-			// package_level: selectedLevel,
+			package_class_id: selectedLevel.id,
 		};
 
 		try {
-			// TODO: Replace with your actual API endpoint
-			console.log("Booking data to send:", bookingData);
-
-			// Simulate API call
-			await axios.post('api/bookings',bookingData)
-
-			alert(
+			await axios.post("api/bookings", bookingData);
+			toast.success(
 				"Booking successful! You will receive a confirmation email shortly."
 			);
 			navigate("/");
 		} catch (error) {
 			console.error("Booking failed:", error);
-			alert("Booking failed. Please try again.");
+			toast.error(
+				error?.response?.data?.message || "Booking failed. Please try again."
+			);
 		} finally {
 			setIsBooking(false);
 		}
