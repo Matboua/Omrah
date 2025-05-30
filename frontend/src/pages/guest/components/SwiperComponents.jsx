@@ -6,203 +6,11 @@ import { Pagination, Navigation } from "swiper/modules";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-import axios from '../../../config/axios'
+import axios from "../../../config/axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LoginPopup from "./LoginPopup";
-
-// data test
-const packagesData = [
-	{
-		id: 1,
-		name: "Ramadan Umrah Package",
-		image:
-			"https://images.unsplash.com/photo-1574246604907-db69e30ddb97?q=80&w=1946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		description: "A special Umrah package during the holy month of Ramadan.",
-		start_date: "2025-03-01",
-		end_date: "2025-04-15",
-		classes: [
-			{
-				id: 1,
-				name: "VIP",
-				price: 3500,
-				description: "Premium experience with luxury amenities.",
-				features: [
-					{ id: 1, title: "5-Star Hotel", icon: "🏨" },
-					{ id: 2, title: "Private Transportation", icon: "🚗" },
-					{ id: 3, title: "Full-Board Meals", icon: "🍽" },
-					{ id: 4, title: "Dedicated Guide", icon: "🧑‍✈" },
-					{ id: 5, title: "Priority Flight Check-in", icon: "🛫" },
-				],
-			},
-			{
-				id: 2,
-				name: "Business",
-				price: 2500,
-				description: "Comfortable journey with key amenities.",
-				features: [
-					{ id: 6, title: "4-Star Hotel", icon: "🏨" },
-					{ id: 7, title: "Shared Transportation", icon: "🚐" },
-					{ id: 8, title: "Half-Board Meals", icon: "🥘" },
-					{ id: 9, title: "Group Guide", icon: "👨‍✈" },
-				],
-			},
-			{
-				id: 3,
-				name: "Economic",
-				price: 1500,
-				description: "Affordable pilgrimage for all.",
-				features: [
-					{ id: 10, title: "3-Star Hotel", icon: "🏨" },
-					{ id: 11, title: "Public Group Bus", icon: "🚌" },
-					{ id: 12, title: "Breakfast Only", icon: "🍞" },
-				],
-			},
-		],
-	},
-	{
-		id: 2,
-		name: "Eid Umrah Package",
-		image:
-			"https://images.unsplash.com/photo-1519818187420-8e49de7adeef?q=80&w=1683&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		description: "A special Umrah package during the holy month of Ramadan.",
-		start_date: "2025-03-01",
-		end_date: "2025-04-15",
-		classes: [
-			{
-				id: 1,
-				name: "VIP",
-				price: 3500,
-				description: "Premium experience with luxury amenities.",
-				features: [
-					{ id: 1, title: "5-Star Hotel", icon: "🏨" },
-					{ id: 2, title: "Private Transportation", icon: "🚗" },
-					{ id: 3, title: "Full-Board Meals", icon: "🍽" },
-					{ id: 4, title: "Dedicated Guide", icon: "🧑‍✈" },
-					{ id: 5, title: "Priority Flight Check-in", icon: "🛫" },
-				],
-			},
-			{
-				id: 2,
-				name: "Business",
-				price: 2500,
-				description: "Comfortable journey with key amenities.",
-				features: [
-					{ id: 6, title: "4-Star Hotel", icon: "🏨" },
-					{ id: 7, title: "Shared Transportation", icon: "🚐" },
-					{ id: 8, title: "Half-Board Meals", icon: "🥘" },
-					{ id: 9, title: "Group Guide", icon: "👨‍✈" },
-				],
-			},
-			{
-				id: 3,
-				name: "Economic",
-				price: 1500,
-				description: "Affordable pilgrimage for all.",
-				features: [
-					{ id: 10, title: "3-Star Hotel", icon: "🏨" },
-					{ id: 11, title: "Public Group Bus", icon: "🚌" },
-					{ id: 12, title: "Breakfast Only", icon: "🍞" },
-				],
-			},
-		],
-	},
-	{
-		id: 3,
-		name: "Quick Umrah Package",
-		image:
-			"https://images.unsplash.com/photo-1577561426384-62154a1e9457?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		description: "A special Umrah package during the holy month of Ramadan.",
-		start_date: "2025-03-01",
-		end_date: "2025-04-15",
-		classes: [
-			{
-				id: 1,
-				name: "VIP",
-				price: 3500,
-				description: "Premium experience with luxury amenities.",
-				features: [
-					{ id: 1, title: "5-Star Hotel", icon: "🏨" },
-					{ id: 2, title: "Private Transportation", icon: "🚗" },
-					{ id: 3, title: "Full-Board Meals", icon: "🍽" },
-					{ id: 4, title: "Dedicated Guide", icon: "🧑‍✈" },
-					{ id: 5, title: "Priority Flight Check-in", icon: "🛫" },
-				],
-			},
-			{
-				id: 2,
-				name: "Business",
-				price: 2500,
-				description: "Comfortable journey with key amenities.",
-				features: [
-					{ id: 6, title: "4-Star Hotel", icon: "🏨" },
-					{ id: 7, title: "Shared Transportation", icon: "🚐" },
-					{ id: 8, title: "Half-Board Meals", icon: "🥘" },
-					{ id: 9, title: "Group Guide", icon: "👨‍✈" },
-				],
-			},
-			{
-				id: 3,
-				name: "Economic",
-				price: 1500,
-				description: "Affordable pilgrimage for all.",
-				features: [
-					{ id: 10, title: "3-Star Hotel", icon: "🏨" },
-					{ id: 11, title: "Public Group Bus", icon: "🚌" },
-					{ id: 12, title: "Breakfast Only", icon: "🍞" },
-				],
-			},
-		],
-	},
-	{
-		id: 3,
-		name: "Quick Umrah Package",
-		image:
-			"https://images.unsplash.com/photo-1577561426384-62154a1e9457?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-		description: "A special Umrah package during the holy month of Ramadan.",
-		start_date: "2025-03-01",
-		end_date: "2025-04-15",
-		classes: [
-			{
-				id: 1,
-				name: "VIP",
-				price: 3500,
-				description: "Premium experience with luxury amenities.",
-				features: [
-					{ id: 1, title: "5-Star Hotel", icon: "🏨" },
-					{ id: 2, title: "Private Transportation", icon: "🚗" },
-					{ id: 3, title: "Full-Board Meals", icon: "🍽" },
-					{ id: 4, title: "Dedicated Guide", icon: "🧑‍✈" },
-					{ id: 5, title: "Priority Flight Check-in", icon: "🛫" },
-				],
-			},
-			{
-				id: 2,
-				name: "Business",
-				price: 2500,
-				description: "Comfortable journey with key amenities.",
-				features: [
-					{ id: 6, title: "4-Star Hotel", icon: "🏨" },
-					{ id: 7, title: "Shared Transportation", icon: "🚐" },
-					{ id: 8, title: "Half-Board Meals", icon: "🥘" },
-					{ id: 9, title: "Group Guide", icon: "👨‍✈" },
-				],
-			},
-			{
-				id: 3,
-				name: "Economic",
-				price: 1500,
-				description: "Affordable pilgrimage for all.",
-				features: [
-					{ id: 10, title: "3-Star Hotel", icon: "🏨" },
-					{ id: 11, title: "Public Group Bus", icon: "🚌" },
-					{ id: 12, title: "Breakfast Only", icon: "🍞" },
-				],
-			},
-		],
-	},
-];
 
 export default function SwiperComponents() {
 	const swiperRef = useRef(null);
@@ -210,7 +18,8 @@ export default function SwiperComponents() {
 	const navigate = useNavigate();
 	const [showLoginPopup, setShowLoginPopup] = useState(false);
 	const [packages, setPackages] = useState([]);
-	const image = "https://images.unsplash.com/photo-1574246604907-db69e30ddb97?q=80&w=1946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+	const image =
+		"https://images.unsplash.com/photo-1574246604907-db69e30ddb97?q=80&w=1946&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 	const handleBookPackage = (pkg) => {
 		if (isAuthenticated) {
@@ -221,13 +30,16 @@ export default function SwiperComponents() {
 			setShowLoginPopup(true);
 		}
 	};
-	
+
 	useEffect(() => {
-		axios.get('/api/packages')
-			.then(res => {setPackages(res.data)
-		console.log(res.data)})
+		axios
+			.get("/api/packages")
+			.then((res) => {
+				setPackages(res.data);
+				console.log(res.data);
+			})
 			.then(console.log(packages))
-			.catch(err => console.error(err));
+			.catch((err) => console.error(err));
 	}, []);
 	return (
 		<>
@@ -260,7 +72,7 @@ export default function SwiperComponents() {
 						768: { slidesPerView: 2 },
 						1024: { slidesPerView: 3 },
 					}}
-					loop={true}
+					loop={packages.length > 3}
 					modules={[Pagination, Navigation]}
 					className="p-3"
 				>
@@ -307,7 +119,11 @@ export default function SwiperComponents() {
 													<ul className="text-sm text-gray-800 space-y-1">
 														{classe.features.map((feature) => (
 															<li
-																key={classe.id+'/'+ classe.features.indexOf(feature)}
+																key={
+																	classe.id +
+																	"/" +
+																	classe.features.indexOf(feature)
+																}
 																className="flex items-center gap-2"
 															>
 																{feature}
