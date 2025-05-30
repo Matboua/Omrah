@@ -4,6 +4,7 @@ import {
 	faGoogle,
 	faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import makkah from "../../assets/images/makkah.webp";
 import makkahh from "../../assets/images/makkah-2.webp";
@@ -17,13 +18,14 @@ export default function Login() {
 	// Stock Data
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	// Send Data
 	const handleLogin = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		try {
-
 			await axios.get("/sanctum/csrf-cookie");
 
 			const response = await axios.post("/api/login", {
@@ -33,14 +35,13 @@ export default function Login() {
 			await dispatch(fetchUser()).unwrap();
 			console.log(response.data);
 			setTimeout(() => {
-                navigate(response.data.user.role === 'admin' 
-                    ? '/dashboard' 
-                    : '/'
-                );
-            }, 1500);
+				navigate(response.data.user.role === "admin" ? "/dashboard" : "/");
+			}, 1500);
 		} catch (error) {
 			console.error(error.response?.data?.message || "Login failed");
 			console.error(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 	return (
@@ -106,11 +107,25 @@ export default function Login() {
 								}}
 							/>
 						</div>
-						<input
+						<button
 							type="submit"
-							value="Login"
-							className="bg-orange-600 py-3 font-semibold text-white my-5 cursor-pointer rounded-sm"
-						/>
+							disabled={isLoading}
+							className={`bg-orange-600 py-3 font-semibold text-white my-5 cursor-pointer rounded-sm flex items-center justify-center ${
+								isLoading ? "opacity-70 cursor-not-allowed" : ""
+							}`}
+						>
+							{isLoading ? (
+								<>
+									<FontAwesomeIcon
+										icon={faSpinner}
+										className="animate-spin mr-2"
+									/>
+									Loading...
+								</>
+							) : (
+								"Login"
+							)}
+						</button>
 					</form>
 					{/* Under The Form */}
 					<div className="flex flex-col gap-8">

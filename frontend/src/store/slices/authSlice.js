@@ -23,7 +23,7 @@ export const logoutUser = createAsyncThunk(
 	async (_, thunkAPI) => {
 		try {
 			const response = await axios.post("/api/logout");
-			console.log(response.data.message)
+			console.log(response.data.message);
 			return true;
 		} catch (error) {
 			return thunkAPI.rejectWithValue("Logout failed");
@@ -63,7 +63,7 @@ const authSlice = createSlice({
 			.addCase(fetchUser.fulfilled, (state, action) => {
 				state.user = action.payload;
 				state.isAuthenticated = true;
-				state.role = action.payload.role
+				state.role = action.payload.role;
 				state.loading = false;
 			})
 			.addCase(fetchUser.rejected, (state, action) => {
@@ -76,7 +76,7 @@ const authSlice = createSlice({
 			.addCase(logoutUser.fulfilled, (state) => {
 				state.user = null;
 				state.isAuthenticated = false;
-				state.role = null
+				state.role = null;
 			});
 	},
 });
