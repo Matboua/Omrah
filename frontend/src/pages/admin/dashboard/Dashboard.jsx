@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import AdminDashboard from "../Dashboard";
 
 export default function Dashboard() {
 	return (
@@ -7,6 +8,7 @@ export default function Dashboard() {
 			<Sidebar />
 			<section className="flex flex-col w-full py-5 pr-[12px] md:pr-5 pl-[72px] md:pl-5 bg-[#fafafa]  overflow-y-scroll">
 				<Header />
+				<AdminDashboard />
 			</section>
 		</section>
 	);
