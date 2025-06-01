@@ -6,48 +6,48 @@ export default function Faqs() {
 		<section className="py-20 w-full flex flex-col items-center gap-10 md:gap-15">
 			<Titles
 				title="Frequently Asked Faqs"
-				description="Explore common Faqs and essential details about renting with Carvoy"
+				description="Explore common questions and essential details about performing Omrah with our agency"
 			/>
 			<div className="flex flex-col gap-5">
 				<Faq
-					title="What services are included in your rates?"
-					description="At Carvoy, our rates include: vehicle rental, vehicle maintenance and lubricants, unlimited mileage for rentals of 3 days or more, civil liability coverage, collision protection with a deductible, theft protection with a deductible, local taxes, 24/7 breakdown assistance, pick-up and drop-off services, and a 20% VAT airport fee."
+					title="What services are included in your Omrah packages?"
+					description="Our Omrah packages include: visa processing, round-trip flights, hotel accommodations near the Haram, ground transportation in Saudi Arabia, spiritual guidance, Ziyarat (visits to holy sites), 24/7 support services, and meals as per the selected package. We handle all documentation and provide pre-departure orientation sessions."
 				/>
 				<Faq
-					title="What documents are required to rent a car?"
-					description="To rent a car from Carvoy, customers must provide the following documents: a valid driver's license, a passport (for MRE and foreign customers), and either a residence permit or a valid ID card. We will make and archive copies of these documents at our first meeting."
+					title="What documents are required for Omrah?"
+					description="For Omrah, you'll need: a valid passport with at least 6 months validity, recent passport-sized photographs, completed visa application forms, proof of vaccination as per current requirements, and a marriage certificate for married couples traveling together. Our team will guide you through the entire documentation process."
 				/>
 				<Faq
-					title="How is payment made?"
-					description="Payment can be made by credit card or cash. You can choose to pay at the time of booking online or when you pick up the vehicle at our location. Our goal is to ensure a seamless and efficient rental process."
+					title="How is payment handled?"
+					description="We accept payments through bank transfer, credit card, or cash. A deposit is required to secure your booking, with the remaining balance due before departure. We offer flexible payment plans to make your spiritual journey more accessible."
 				/>
 				<Faq
-					title="Do I have to pay a deposit?"
-					description="Yes, a deposit may be required when booking your vehicle. This deposit, often called a security deposit, is a bank pre-authorization that allows Carvoy to charge your account if any issues occur during your rental that are not covered and are due to your liability. If no such issues arise, the pre-authorization is released. If the “security deposit” option is not visible during booking, it means that it is not required for your chosen vehicle."
+					title="Do I need to make a deposit?"
+					description="Yes, a deposit is required to confirm your Omrah booking. The deposit amount varies based on the package selected and typically ranges from 30% to 50% of the total package cost. This helps us secure your flights, hotel reservations, and visa processing."
 				/>
 				<Faq
-					title="Why choose Carvoy for your car rental?"
-					description="Choosing Carvoy means experiencing the best of Morocco in comfort and style. We offer brand-new, fully guaranteed vehicles for a smooth and worry-free ride. Our competitive pricing ensures exceptional value for your money, and we provide car delivery to your chosen location without hidden surprises. Your satisfaction is our priority!"
+					title="Why choose our Omrah Agency?"
+					description="Our agency offers comprehensive Omrah services with years of experience, dedicated support, and competitive pricing. We provide accommodations close to the Haram, experienced guides, and personalized attention. Our team ensures a smooth and spiritually fulfilling journey from Morocco to the holy cities."
 				/>
 				<Faq
-					title="Can anyone else drive the car?"
-					description="Only the driver or a second driver listed in the rental contract is authorized to drive the vehicle. Any additional driver must be disclosed at the time of contract signing and must meet the legal driving age (21 years) with a valid driver’s license held for at least 2 years. Their presence at the contract conclusion is mandatory."
+					title="What about accommodation arrangements?"
+					description="We offer various accommodation options near the Haram in both Makkah and Madinah, ranging from 3-star to 5-star hotels. All our hotels are carefully selected for their proximity to the holy sites, comfort, and quality of service. Room arrangements can be customized based on family size and preferences."
 				/>
 				<Faq
-					title="Can I change the car if I notice a mechanical failure?"
-					description="Yes, if you experience a mechanical issue, please contact our agency or our 24/7 assistance service (included in your rental contract). We will authorize repairs or offer a replacement vehicle as needed."
+					title="Is spiritual guidance provided?"
+					description="Yes, our packages include experienced spiritual guides who will assist you throughout your journey. They provide guidance on performing Omrah rituals, lead daily prayers, and offer religious insights. Our guides are fluent in Arabic and French to ensure clear communication."
 				/>
 				<Faq
-					title="Vehicle Trackers"
-					description="Some Carvoy vehicles are equipped with tracking devices, used in line with our data protection policy."
+					title="What about transportation in Saudi Arabia?"
+					description="We provide all necessary transportation in Saudi Arabia, including airport transfers and transportation between Makkah and Madinah. Our vehicles are modern, comfortable, and air-conditioned to ensure a pleasant journey."
 				/>
 				<Faq
-					title="Pricing"
-					description="Our pricing is quoted on a per-day basis (24-hour period)."
+					title="Are meals included?"
+					description="Meal arrangements vary by package. Our VIP packages typically include full-board meals (breakfast, lunch, and dinner), while other packages may include breakfast only or half-board options. All meals are halal and cater to various dietary preferences."
 				/>
 				<Faq
-					title="How much is deposit insurance?"
-					description="For responsible accidents, the deductible amounts are as follows: Category A/B: 2000 euros Category C/D/E: 3000 euros"
+					title="What happens in case of emergency?"
+					description="We provide 24/7 emergency support throughout your journey. Our team in both Morocco and Saudi Arabia is always available to assist with any medical, logistical, or other emergencies. We also help arrange travel insurance for added peace of mind."
 				/>
 			</div>
 		</section>

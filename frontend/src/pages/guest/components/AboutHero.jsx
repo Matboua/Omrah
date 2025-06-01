@@ -10,32 +10,34 @@ export default function AboutHero() {
 					<span className="absolute -left-10 rounded-2xl w-5/10 h-full bg-orange-400"></span>
 					<img
 						src={contactMakkah}
-						alt="Slider Car"
+						alt="Makkah View"
 						className="z-10 rounded-xl object-contain h-64 sm:h-72 lg:h-80 xl:h-96"
 					/>
 				</div>
 				<div className="flex flex-col gap-4 justify-center py-6 text-center rounded-sm lg:text-left w-5/10">
 					<div>
-						<p className="text-blue-600 font-medium">ABOUT OUR COMPANY</p>
+						<p className="text-blue-600 font-medium">ABOUT OUR AGENCY</p>
 						<h2 className="font-medium text-2xl">
-							Carvoy - Your Premier Car Rental Service in Morocco!
+							Omrah Agency - Your Trusted Guide to Sacred Journey!
 						</h2>
 					</div>
 					<p>
-						At Carvoy, we pride ourselves on offering top-notch car rental
-						services tailored to meet your needs. Located in the heart of
-						Agadir, we provide seamless pick-up services across all of Morocco.
-						Whether you&apos;re visiting for business or pleasure, Carvoy
-						ensures a smooth and enjoyable travel experience.
+						At Omrah Agency, we are dedicated to providing exceptional Omrah
+						services tailored to meet your spiritual aspirations. Based in the
+						heart of Agadir, we facilitate seamless journeys to the holy cities
+						of Makkah and Madinah. Whether you're embarking on your first Omrah
+						or are a regular visitor to the holy sites, we ensure a deeply
+						meaningful and comfortable experience.
 					</p>
 					<p>
-						Carvoy stands out with our extensive fleet of vehicles, ensuring you
-						find the perfect car for your journey. Our commitment to excellent
-						customer service means we are always here to assist you, making your
-						rental experience hassle-free. With competitive rates, you can enjoy
-						the best of Morocco without breaking the bank. Experience
-						convenience and quality with Carvoy, your trusted car rental
-						partner.
+						Our agency stands out with our comprehensive service offerings,
+						ensuring every aspect of your sacred journey is carefully planned
+						and executed. From visa processing and flight bookings to premium
+						accommodations near the Haram and expert spiritual guidance, we
+						handle all details with utmost care and attention. With competitive
+						packages and a commitment to excellence, we make your spiritual
+						journey accessible, comfortable, and profoundly rewarding. Trust
+						Omrah Agency to be your dedicated partner in this blessed journey.
 					</p>
 				</div>
 			</div>
