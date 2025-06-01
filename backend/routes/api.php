@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // book package
     Route::post('/bookings', [BookingController::class, 'store']);
 
+    Route::get('/mybookings', [BookingController::class, 'index']);
+
+
 });
 
 // Admin Only Routes
@@ -46,7 +49,7 @@ Route::middleware(['auth:sanctum', IsAdmin::class])->group(function () {
     Route::delete('/classes/{id}', [PackageClassController::class, 'destroy']);
 
     // Bookings
-    Route::post('/bookings', [BookingController::class, 'store']);
+    // Route::post('/bookings', [BookingController::class, 'store']);
     Route::put('/bookings/{id}', [BookingController::class, 'updateStatus']);
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);

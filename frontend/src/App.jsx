@@ -15,6 +15,7 @@ import TermsAndConditions from "./pages/guest/TermsAndConditions";
 import Contact from "./pages/guest/Contact";
 import About from "./pages/guest/About";
 import Services from "./pages/guest/Services";
+import Mybookings from "./pages/guest/Mybookings"
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Clients from "./pages/admin/clients/Clients";
 import Packages from "./pages/admin/packages/Packages";
@@ -73,6 +74,7 @@ export default function AppRoutes() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/services" element={<Services />} />
+				<Route path="/mybookings" element={<Mybookings />} />
 				<Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
 				<Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 				{/* Client Routes */}

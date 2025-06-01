@@ -48,6 +48,8 @@ export default function SwiperComponents() {
 			)}
 			<div className="relative">
 				{/* Custom Navigation Buttons */}
+				{packages.length > 0 && (
+
 				<div className="absolute -top-15 min-[490px]:-top-25 min-[640px]:-top-30 -right-2 min-[425px]:right-0 z-10 flex space-x-2 p-4 ">
 					<button
 						onClick={() => swiperRef.current?.slidePrev()}
@@ -62,6 +64,7 @@ export default function SwiperComponents() {
 						<ChevronRight />
 					</button>
 				</div>
+				)}
 				<Swiper
 					onSwiper={(swiper) => {
 						swiperRef.current = swiper;

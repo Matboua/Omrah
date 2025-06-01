@@ -49,6 +49,16 @@ export default function Header() {
 								: ''
 							}
 				>Packages</NavLink>
+				{isAuthenticated ? (
+
+				<NavLink to="/mybookings"
+				className={({isActive}) => 
+							isActive 
+								? 'text-orange-600' 
+								: ''
+							}
+				>My Bookings</NavLink>
+				):null}
 				<NavLink to="/about"
 				className={({isActive}) => 
 							isActive 
