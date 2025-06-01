@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageClassController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\UserManagementController;
 
 // public routes
@@ -49,4 +50,8 @@ Route::middleware(['auth:sanctum', IsAdmin::class])->group(function () {
     Route::put('/bookings/{id}', [BookingController::class, 'updateStatus']);
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
+
+    // dashboard
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'overview']);
+    Route::get('/admin/dashboard/bookings-monthly', [AdminDashboardController::class, 'bookingsPerMonth']);
 });

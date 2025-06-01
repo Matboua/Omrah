@@ -21,11 +21,6 @@ class PackageClass extends Model
         return $this->belongsTo(Package::class);
     }
 
-    public function flights()
-    {
-        return $this->hasMany(Flight::class);
-    }
-
     public function bookings()
     {
         return $this->hasMany(Booking::class);
