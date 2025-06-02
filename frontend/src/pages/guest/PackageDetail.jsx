@@ -227,7 +227,7 @@ export default function PackageDetail() {
 			toast.success(
 				"Booking successful! You will receive a confirmation email shortly."
 			);
-			navigate("/");
+			navigate("/mybookings");
 		} catch (error) {
 			console.error("Booking failed:", error);
 			toast.error(

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\PackageClass;
 use Illuminate\Http\Request;
+use App\Mail\BookingConfirmedMail;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -85,6 +87,14 @@ class BookingController extends Controller
 
         $booking->status = $request->status;
         $booking->save();
+
+        if ($booking->status === 'confirmed') {
+       // Load user and room relationships if needed
+       $booking->load('user', 'packageClass.package');
+
+       // Send email
+       Mail::to($booking->user->email)->send(new BookingConfirmedMail($booking));
+        }
 
         return response()->json([
             'message' => 'Booking status updated successfully.',

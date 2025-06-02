@@ -35,6 +35,7 @@ class AdminDashboardController extends Controller
             $seatsData = $classes->map(function ($class) {
                 return [
                     'name' => $class->package->name . ' - ' . $class->name,
+                    'class' => $class->name,
                     'seats' => $class->seats,
                     'package' => $class->package->name,
                 ];

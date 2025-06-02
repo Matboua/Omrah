@@ -6,14 +6,10 @@ import {
     LineChart, Line,
     ResponsiveContainer
 } from 'recharts';
+import logo from '../../assets/images/letter-o.webp'
 
 const BOOKINGCOLORS = ['#4ade80', '#60a5fa', '#facc15', '#f87171']; // green, blue, yellow, red
 
-// const PACKAGECOLORS = {
-//     "Silver Umrah": "#4ade80", // Green
-//     "Gold Umrah": "#60a5fa",   // Blue
-//     "Platinum Umrah": "#facc15", // Yellow
-// };
 
 const generateColor = (index) => {
     const colors = [
@@ -52,7 +48,16 @@ export default function AdminDashboard() {
             .catch(err => console.error(err));
     }, []);
 
-    if (!data) return <div>Loading...</div>;
+    if (!data) {
+            return (
+                <div className="p-6 flex justify-center items-center h-64">
+                    <div className="relative flex justify-center items-center h-screen">
+                        <div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+                        <img src={logo} className="rounded-full h-8 animate-spin-reverse" />
+                    </div>
+                </div>
+            );
+        }
 
     const bookingStats = [
         { name: 'Confirmed', value: data.confirmed_bookings },
@@ -63,6 +68,7 @@ export default function AdminDashboard() {
     const seatData = data.seats.map(item => ({
         name: item.name,
         seats: item.seats,
+        class: item.class,
         package: item.package
     }));
 

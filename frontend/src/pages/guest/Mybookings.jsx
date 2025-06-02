@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from '../../config/axios';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import logo from '../../assets/images/letter-o.webp'
 
 export default function Mybookings() {
     const [bookings, setBookings] = useState([]);
@@ -35,13 +36,16 @@ export default function Mybookings() {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
+    // if (loading) {
+    //     return (
+    //         <div className="p-6 flex justify-center items-center h-64">
+    //                         <div className="relative flex justify-center items-center h-screen">
+    //                             <div className="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-600"></div>
+    //                             <img src={logo} className="rounded-full h-8 animate-spin-reverse" />
+    //                         </div>
+    //                     </div>
+    //     );
+    // }
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
