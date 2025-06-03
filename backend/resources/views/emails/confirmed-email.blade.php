@@ -168,6 +168,7 @@
         .contact-method {
             display: flex;
             align-items: center;
+            text-color: white;
             color: #4b5563;
             text-decoration: none;
             font-size: 14px;
@@ -255,7 +256,7 @@
         <div class="divider"></div>
         
         <div class="cta-container">
-            <a href="{{ url('/my-bookings') }}" class="cta-btn">View Complete Booking Details</a>
+            <a href="{{ url('http://localhost:5173/mybookings') }}" class="cta-btn">View Complete Booking Details</a>
         </div>
         
         <div class="contact">
